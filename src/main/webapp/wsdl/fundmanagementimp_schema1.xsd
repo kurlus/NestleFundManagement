@@ -1,0 +1,1204 @@
+<xs:schema xmlns:tns="http://webservices/" xmlns:xs="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://webservices/">
+  <xs:element name="executeDMLRequest" type="tns:executeDMLRequest"/>
+  <xs:element name="executeDMLRequestResponse" type="tns:executeDMLRequestResponse"/>
+  <xs:element name="loadDefinitionData" type="tns:loadDefinitionData"/>
+  <xs:element name="loadDefinitionDataResponse" type="tns:loadDefinitionDataResponse"/>
+  <xs:element name="loadUserRoleWiseMenues" type="tns:loadUserRoleWiseMenues"/>
+  <xs:element name="loadUserRoleWiseMenuesResponse" type="tns:loadUserRoleWiseMenuesResponse"/>
+  <xs:complexType name="loadUserRoleWiseMenues">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="loadUserRoleWiseMenuesResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:menus"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="menus">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="groupMenusList" nillable="true" type="tns:groupMenus"/>
+      <xs:element minOccurs="0" name="menuDesc" type="xs:string"/>
+      <xs:element minOccurs="0" name="menuGroupID" type="xs:string"/>
+      <xs:element minOccurs="0" name="menuID" type="xs:string"/>
+      <xs:element minOccurs="0" name="menuLabel" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="groupMenus">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="groupMenuDesc" type="xs:string"/>
+      <xs:element minOccurs="0" name="groupMenuGroupID" type="xs:string"/>
+      <xs:element minOccurs="0" name="groupMenuID" type="xs:string"/>
+      <xs:element minOccurs="0" name="groupMenuLabel" type="xs:string"/>
+      <xs:element minOccurs="0" name="groupMenuLevel" type="xs:string"/>
+      <xs:element minOccurs="0" name="groupMenuModuleID" type="xs:string"/>
+      <xs:element minOccurs="0" name="groupMenuURL" type="xs:string"/>
+      <xs:element minOccurs="0" name="groupParentMenuID" type="xs:string"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="subGroupMenuList" nillable="true" type="tns:subGroupMenu"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="subGroupMenu">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="subGroupMenuDesc" type="xs:string"/>
+      <xs:element minOccurs="0" name="subGroupMenuGroupID" type="xs:string"/>
+      <xs:element minOccurs="0" name="subGroupMenuID" type="xs:string"/>
+      <xs:element minOccurs="0" name="subGroupMenuLabel" type="xs:string"/>
+      <xs:element minOccurs="0" name="subGroupMenuLevel" type="xs:string"/>
+      <xs:element minOccurs="0" name="subGroupMenuURL" type="xs:string"/>
+      <xs:element minOccurs="0" name="subGroupParentMenuID" type="xs:string"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="subGroupSubMenuList" nillable="true" type="tns:subGroupSubMenu"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="subGroupSubMenu">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="subGroupSubMenuDescription" type="xs:string"/>
+      <xs:element minOccurs="0" name="subGroupSubMenuGroupID" type="xs:string"/>
+      <xs:element minOccurs="0" name="subGroupSubMenuID" type="xs:string"/>
+      <xs:element minOccurs="0" name="subGroupSubMenuLabel" type="xs:string"/>
+      <xs:element minOccurs="0" name="subGroupSubMenuModuleID" type="xs:string"/>
+      <xs:element minOccurs="0" name="subGroupSubMenuUrl" type="xs:string"/>
+      <xs:element minOccurs="0" name="subGroupSubParentMenuID" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="loadDefinitionData">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="tns:loginEmployee"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="loginEmployee">
+    <xs:sequence>
+      <xs:element name="batchID" type="xs:long"/>
+      <xs:element minOccurs="0" name="employeeID" type="xs:string"/>
+      <xs:element minOccurs="0" name="employeeRightsBean" type="tns:employeeRights"/>
+      <xs:element minOccurs="0" name="filterBy" type="xs:string"/>
+      <xs:element name="loaderID" type="xs:long"/>
+      <xs:element minOccurs="0" name="menuID" type="xs:string"/>
+      <xs:element name="onBehalfOf" type="xs:boolean"/>
+      <xs:element minOccurs="0" name="operationID" type="xs:string"/>
+      <xs:element minOccurs="0" name="reqIdentifier" type="xs:string"/>
+      <xs:element minOccurs="0" name="roleID" type="xs:string"/>
+      <xs:element minOccurs="0" name="roleTypeID" type="xs:string"/>
+      <xs:element minOccurs="0" name="sessionID" type="xs:string"/>
+      <xs:element minOccurs="0" name="terminalID" type="xs:string"/>
+      <xs:element minOccurs="0" name="userID" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="employeeRights">
+    <xs:sequence>
+      <xs:element name="addRight" type="xs:boolean"/>
+      <xs:element name="delRight" type="xs:boolean"/>
+      <xs:element name="editRight" type="xs:boolean"/>
+      <xs:element name="postRight" type="xs:boolean"/>
+      <xs:element name="runRight" type="xs:boolean"/>
+      <xs:element name="saveRight" type="xs:boolean"/>
+      <xs:element name="viewRight" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="loadDefinitionDataResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:defResultSet"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="defResultSet">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="cityBeans" nillable="true" type="tns:city"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="costCentreBeans" nillable="true" type="tns:costCentre"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="countryBeans" nillable="true" type="tns:country"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="employeeBeans" nillable="true" type="tns:employee"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="employeeTypeBeans" nillable="true" type="tns:employeeType"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="fundBeans" nillable="true" type="tns:fund"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="glBankBeans" nillable="true" type="tns:bank"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="glBankBranchBeans" nillable="true" type="tns:glBankBranch"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="glBankPaymentVoucherBeans" nillable="true" type="tns:glBankPaymentVoucher"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="glBankReceiptVoucherBeans" nillable="true" type="tns:glBankReceiptVoucher"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="glBeans" nillable="true" type="tns:glParentData"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="glBookTypeBeans" nillable="true" type="tns:glBookType"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="glBranchBeans" nillable="true" type="tns:glBranch"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="glCashPaymentVoucherBeans" nillable="true" type="tns:glCashPaymentVoucher"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="glCashReceiptVoucherBeans" nillable="true" type="tns:glCashReceiptVoucher"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="glCurrencyBeans" nillable="true" type="tns:glCurrency"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="glFamilyTypeBeans" nillable="true" type="tns:glFamilyType"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="glFinancialPeriodBeans" nillable="true" type="tns:glFinancialPeriod"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="glFinancialYears" nillable="true" type="tns:glFinancialYears"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="glFormTypeBeans" nillable="true" type="tns:glFormType"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="glJournalVoucherBeans" nillable="true" type="tns:glJournalVoucher"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="glSlCodeBeans" nillable="true" type="tns:glSlCode"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="glSlMappingBeans" nillable="true" type="tns:glSlMapping"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="glSlTypeBeans" nillable="true" type="tns:glSlType"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="glTemplateBeans" nillable="true" type="tns:template"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="glVoucherBeans" nillable="true" type="tns:glBankPaymentVoucher"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="glVoucherTemplateMfBeans" nillable="true" type="tns:glVoucherTemplateMf"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="glVoucherTemplateTypeBeans" nillable="true" type="tns:glVoucherTemplateType"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="glmfBeans" nillable="true" type="tns:glmf"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="importEmplyeeBeans" nillable="true" type="tns:importEmployee"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="importLoanApplyBeans" nillable="true" type="tns:importLoanApply"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="importLoanPaymentBeans" nillable="true" type="tns:importLoanPayment"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="importPayroll" nillable="true" type="tns:importPayroll"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="loaderInfo" nillable="true" type="tns:loaderInfo"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="loaderRunBeans" nillable="true" type="tns:loaderRun"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="loanApply" nillable="true" type="tns:loanApply"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="loanDefBeans" nillable="true" type="tns:loanDef"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="loanPayment" nillable="true" type="tns:loanPayment"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="loanPaymentSchedule" nillable="true" type="tns:loanSchedule"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="loanProcess" nillable="true" type="tns:loan"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="loanSettlement" nillable="true" type="tns:loanSettlement"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="loanTypes" nillable="true" type="tns:loanType"/>
+      <xs:element minOccurs="0" name="loginEmployee" type="tns:loginEmployee"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="loginEmployeeBeans" nillable="true" type="tns:loginEmployee"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="payRollBeans" nillable="true" type="tns:payroll"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="payRollLoanBeans" nillable="true" type="tns:payRollLoan"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="payRollPFContribution" nillable="true" type="tns:payRollPFContribution"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="payRollPNContribution" nillable="true" type="tns:payRollPNContribution"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="ratesBeans" nillable="true" type="tns:loanInterestRate"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="roleDetailBeans" nillable="true" type="tns:roleDetail"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="roleTypes" nillable="true" type="tns:roleType"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="roles" nillable="true" type="tns:roles"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="subMenusBeans" nillable="true" type="tns:subGroupSubMenu"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="wfEventActionBeans" nillable="true" type="tns:wfEventAction"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="wfEventTypeBeans" nillable="true" type="tns:wfEventType"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="wfMfBeans" nillable="true" type="tns:wfMF"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="wfTransitionBeans" nillable="true" type="tns:wfTransition"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="city">
+    <xs:sequence>
+      <xs:element name="cityID" type="xs:int"/>
+      <xs:element minOccurs="0" name="cityName" type="xs:string"/>
+      <xs:element minOccurs="0" name="cityShortName" type="xs:string"/>
+      <xs:element minOccurs="0" name="exceptionMsgString" type="xs:string"/>
+      <xs:element name="logID" type="xs:long"/>
+      <xs:element name="post" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="costCentre">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="costCentreID" type="xs:string"/>
+      <xs:element minOccurs="0" name="costCentreName" type="xs:string"/>
+      <xs:element minOccurs="0" name="exceptionMsgString" type="xs:string"/>
+      <xs:element name="logID" type="xs:long"/>
+      <xs:element name="post" type="xs:int"/>
+      <xs:element minOccurs="0" name="shortName" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="country">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="country" type="xs:string"/>
+      <xs:element name="countryID" type="xs:int"/>
+      <xs:element minOccurs="0" name="exceptionMsgString" type="xs:string"/>
+      <xs:element name="logID" type="xs:long"/>
+      <xs:element name="post" type="xs:int"/>
+      <xs:element minOccurs="0" name="shortName" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="employee">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="accountNo" type="xs:string"/>
+      <xs:element name="active" type="xs:int"/>
+      <xs:element minOccurs="0" name="bankName" type="xs:string"/>
+      <xs:element minOccurs="0" name="bankShortName" type="xs:string"/>
+      <xs:element minOccurs="0" name="bankTitle" type="xs:string"/>
+      <xs:element minOccurs="0" name="basicPay" type="xs:decimal"/>
+      <xs:element name="batchID" type="xs:long"/>
+      <xs:element minOccurs="0" name="branchCode" type="xs:string"/>
+      <xs:element minOccurs="0" name="branchShortName" type="xs:string"/>
+      <xs:element minOccurs="0" name="business" type="xs:string"/>
+      <xs:element minOccurs="0" name="costCentreID" type="xs:string"/>
+      <xs:element minOccurs="0" name="dateOfBirth" type="xs:dateTime"/>
+      <xs:element minOccurs="0" name="dateOfConfirmation" type="xs:dateTime"/>
+      <xs:element minOccurs="0" name="dateOfJoining" type="xs:dateTime"/>
+      <xs:element minOccurs="0" name="department" type="xs:string"/>
+      <xs:element minOccurs="0" name="designation" type="xs:string"/>
+      <xs:element minOccurs="0" name="email" type="xs:string"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="employeeContacts" nillable="true" type="tns:employeeContacts"/>
+      <xs:element minOccurs="0" name="employeeFunction" type="xs:string"/>
+      <xs:element minOccurs="0" name="employeeGroup" type="xs:string"/>
+      <xs:element minOccurs="0" name="employeeID" type="xs:string"/>
+      <xs:element minOccurs="0" name="employeeName" type="xs:string"/>
+      <xs:element name="employeeType" type="xs:int"/>
+      <xs:element minOccurs="0" name="exceptionMsgString" type="xs:string"/>
+      <xs:element minOccurs="0" name="gender" type="xs:string"/>
+      <xs:element minOccurs="0" name="iban" type="xs:string"/>
+      <xs:element minOccurs="0" name="lastWorkingDay" type="xs:dateTime"/>
+      <xs:element minOccurs="0" name="location" type="xs:string"/>
+      <xs:element name="logID" type="xs:long"/>
+      <xs:element minOccurs="0" name="managerID" type="xs:string"/>
+      <xs:element minOccurs="0" name="NIC" type="xs:string"/>
+      <xs:element minOccurs="0" name="nationality" type="xs:string"/>
+      <xs:element minOccurs="0" name="ntn" type="xs:string"/>
+      <xs:element name="onBehalfOf" type="xs:int"/>
+      <xs:element minOccurs="0" name="orgUnit" type="xs:string"/>
+      <xs:element name="post" type="xs:int"/>
+      <xs:element minOccurs="0" name="reason" type="xs:string"/>
+      <xs:element name="recordID" type="xs:long"/>
+      <xs:element minOccurs="0" name="roleID" type="xs:string"/>
+      <xs:element minOccurs="0" name="status" type="xs:string"/>
+      <xs:element minOccurs="0" name="subFunction" type="xs:string"/>
+      <xs:element minOccurs="0" name="subGroup" type="xs:string"/>
+      <xs:element minOccurs="0" name="userID" type="xs:string"/>
+      <xs:element minOccurs="0" name="pAddress" type="xs:string"/>
+      <xs:element minOccurs="0" name="pCity" type="xs:string"/>
+      <xs:element minOccurs="0" name="pContact" type="xs:string"/>
+      <xs:element minOccurs="0" name="pCountry" type="xs:string"/>
+      <xs:element minOccurs="0" name="tAddress" type="xs:string"/>
+      <xs:element minOccurs="0" name="tCity" type="xs:string"/>
+      <xs:element minOccurs="0" name="tContact" type="xs:string"/>
+      <xs:element minOccurs="0" name="tCountry" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="employeeContacts">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="address" type="xs:string"/>
+      <xs:element minOccurs="0" name="addressType" type="xs:string"/>
+      <xs:element minOccurs="0" name="cityShort" type="xs:string"/>
+      <xs:element minOccurs="0" name="contact" type="xs:string"/>
+      <xs:element name="contactID" type="xs:long"/>
+      <xs:element minOccurs="0" name="countryShort" type="xs:string"/>
+      <xs:element minOccurs="0" name="employeeID" type="xs:string"/>
+      <xs:element name="logID" type="xs:long"/>
+      <xs:element name="post" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="employeeType">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="employeeTypeDescription" type="xs:string"/>
+      <xs:element name="employeeTypeId" type="xs:int"/>
+      <xs:element minOccurs="0" name="exceptionMsgString" type="xs:string"/>
+      <xs:element name="logID" type="xs:long"/>
+      <xs:element name="post" type="xs:int"/>
+      <xs:element minOccurs="0" name="shortName" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="fund">
+    <xs:sequence>
+      <xs:element name="categoryId" type="xs:int"/>
+      <xs:element minOccurs="0" name="exceptionMsgString" type="xs:string"/>
+      <xs:element minOccurs="0" name="fundCode" type="xs:string"/>
+      <xs:element minOccurs="0" name="fundName" type="xs:string"/>
+      <xs:element name="logID" type="xs:long"/>
+      <xs:element name="post" type="xs:int"/>
+      <xs:element minOccurs="0" name="shortName" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="bank">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="bankCode" type="xs:string"/>
+      <xs:element minOccurs="0" name="bankDescription" type="xs:string"/>
+      <xs:element minOccurs="0" name="bankShort" type="xs:string"/>
+      <xs:element minOccurs="0" name="exceptionMsgString" type="xs:string"/>
+      <xs:element name="logID" type="xs:long"/>
+      <xs:element name="post" type="xs:int"/>
+      <xs:element minOccurs="0" name="shortDescription" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="glBankBranch">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="bankBranchAddress" type="xs:string"/>
+      <xs:element name="bankBranchID" type="xs:long"/>
+      <xs:element minOccurs="0" name="bankBranchShort" type="xs:string"/>
+      <xs:element minOccurs="0" name="bankShort" type="xs:string"/>
+      <xs:element minOccurs="0" name="branchShort" type="xs:string"/>
+      <xs:element minOccurs="0" name="cityShort" type="xs:string"/>
+      <xs:element minOccurs="0" name="countryShort" type="xs:string"/>
+      <xs:element minOccurs="0" name="email" type="xs:string"/>
+      <xs:element minOccurs="0" name="exceptionMsgString" type="xs:string"/>
+      <xs:element minOccurs="0" name="faxOne" type="xs:string"/>
+      <xs:element minOccurs="0" name="faxTwo" type="xs:string"/>
+      <xs:element name="logID" type="xs:long"/>
+      <xs:element minOccurs="0" name="phoneOne" type="xs:string"/>
+      <xs:element minOccurs="0" name="phoneTwo" type="xs:string"/>
+      <xs:element name="post" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="glBankPaymentVoucher">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="bookTypeShort" type="xs:string"/>
+      <xs:element minOccurs="0" name="exceptionMsgString" type="xs:string"/>
+      <xs:element name="flagTreasury" type="xs:int"/>
+      <xs:element minOccurs="0" name="fundShort" type="xs:string"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="glBankPaymentDet" nillable="true" type="tns:glBankPaymentDet"/>
+      <xs:element name="glFormNo" type="xs:int"/>
+      <xs:element minOccurs="0" name="glVoucherDate" type="xs:dateTime"/>
+      <xs:element name="glVoucherNo" type="xs:long"/>
+      <xs:element name="logID" type="xs:long"/>
+      <xs:element minOccurs="0" name="narration" type="xs:string"/>
+      <xs:element name="periodID" type="xs:long"/>
+      <xs:element name="post" type="xs:int"/>
+      <xs:element minOccurs="0" name="remarksTreasury" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="glBankPaymentDet">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="chequeNo" type="xs:string"/>
+      <xs:element minOccurs="0" name="creditAmount" type="xs:decimal"/>
+      <xs:element minOccurs="0" name="DMLType" type="xs:string"/>
+      <xs:element minOccurs="0" name="debitAmount" type="xs:decimal"/>
+      <xs:element minOccurs="0" name="employeeID" type="xs:string"/>
+      <xs:element minOccurs="0" name="exceptionMsgString" type="xs:string"/>
+      <xs:element name="glLineNo" type="xs:int"/>
+      <xs:element minOccurs="0" name="glMFCode" type="xs:string"/>
+      <xs:element minOccurs="0" name="glSLType" type="xs:string"/>
+      <xs:element name="glVoucherNo" type="xs:long"/>
+      <xs:element minOccurs="0" name="narration" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="glBankReceiptVoucher">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="bookTypeShort" type="xs:string"/>
+      <xs:element minOccurs="0" name="exceptionMsgString" type="xs:string"/>
+      <xs:element name="flagTreasury" type="xs:int"/>
+      <xs:element minOccurs="0" name="fundShort" type="xs:string"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="glBankReceiptDet" nillable="true" type="tns:glBankReceiptDet"/>
+      <xs:element name="glFormNo" type="xs:int"/>
+      <xs:element minOccurs="0" name="glVoucherDate" type="xs:dateTime"/>
+      <xs:element name="glVoucherNo" type="xs:long"/>
+      <xs:element name="logID" type="xs:long"/>
+      <xs:element minOccurs="0" name="narration" type="xs:string"/>
+      <xs:element name="periodID" type="xs:long"/>
+      <xs:element name="post" type="xs:int"/>
+      <xs:element minOccurs="0" name="remarksTreasury" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="glBankReceiptDet">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="chequeNo" type="xs:string"/>
+      <xs:element minOccurs="0" name="creditAmount" type="xs:decimal"/>
+      <xs:element minOccurs="0" name="DMLType" type="xs:string"/>
+      <xs:element minOccurs="0" name="debitAmount" type="xs:decimal"/>
+      <xs:element minOccurs="0" name="employeeID" type="xs:string"/>
+      <xs:element minOccurs="0" name="exceptionMsgString" type="xs:string"/>
+      <xs:element name="glLineNo" type="xs:int"/>
+      <xs:element minOccurs="0" name="glMFCode" type="xs:string"/>
+      <xs:element minOccurs="0" name="glSLType" type="xs:string"/>
+      <xs:element name="glVoucherNo" type="xs:long"/>
+      <xs:element minOccurs="0" name="narration" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="glParentData">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="exceptionMsgString" type="xs:string"/>
+      <xs:element minOccurs="0" name="glLevelDescription" type="xs:string"/>
+      <xs:element minOccurs="0" name="parentCode" type="xs:string"/>
+      <xs:element minOccurs="0" name="parentDescription" type="xs:string"/>
+      <xs:element minOccurs="0" name="parentFamily" type="xs:string"/>
+      <xs:element minOccurs="0" name="parentLevel" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="glBookType">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="bookType" type="xs:string"/>
+      <xs:element minOccurs="0" name="description" type="xs:string"/>
+      <xs:element minOccurs="0" name="exceptionMsgString" type="xs:string"/>
+      <xs:element minOccurs="0" name="formType" type="xs:string"/>
+      <xs:element minOccurs="0" name="fundShort" type="xs:string"/>
+      <xs:element minOccurs="0" name="glMFCode" type="xs:string"/>
+      <xs:element name="logID" type="xs:long"/>
+      <xs:element name="post" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="glBranch">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="branchCode" type="xs:string"/>
+      <xs:element minOccurs="0" name="branchDescription" type="xs:string"/>
+      <xs:element minOccurs="0" name="branchShort" type="xs:string"/>
+      <xs:element minOccurs="0" name="exceptionMsgString" type="xs:string"/>
+      <xs:element name="logID" type="xs:long"/>
+      <xs:element name="post" type="xs:int"/>
+      <xs:element minOccurs="0" name="shortDescription" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="glCashPaymentVoucher">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="bookTypeShort" type="xs:string"/>
+      <xs:element minOccurs="0" name="exceptionMsgString" type="xs:string"/>
+      <xs:element name="flagTreasury" type="xs:int"/>
+      <xs:element minOccurs="0" name="fundShort" type="xs:string"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="glCashPaymentDet" nillable="true" type="tns:glCashPaymentDet"/>
+      <xs:element name="glFormNo" type="xs:int"/>
+      <xs:element minOccurs="0" name="glVoucherDate" type="xs:dateTime"/>
+      <xs:element name="glVoucherNo" type="xs:long"/>
+      <xs:element name="logID" type="xs:long"/>
+      <xs:element minOccurs="0" name="narration" type="xs:string"/>
+      <xs:element name="periodID" type="xs:long"/>
+      <xs:element name="post" type="xs:int"/>
+      <xs:element minOccurs="0" name="remarksTreasury" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="glCashPaymentDet">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="creditAmount" type="xs:decimal"/>
+      <xs:element minOccurs="0" name="DMLType" type="xs:string"/>
+      <xs:element minOccurs="0" name="debitAmount" type="xs:decimal"/>
+      <xs:element minOccurs="0" name="employeeID" type="xs:string"/>
+      <xs:element minOccurs="0" name="exceptionMsgString" type="xs:string"/>
+      <xs:element name="glLineNo" type="xs:int"/>
+      <xs:element minOccurs="0" name="glMFCode" type="xs:string"/>
+      <xs:element minOccurs="0" name="glSLType" type="xs:string"/>
+      <xs:element name="glVoucherNo" type="xs:long"/>
+      <xs:element minOccurs="0" name="narration" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="glCashReceiptVoucher">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="bookTypeShort" type="xs:string"/>
+      <xs:element minOccurs="0" name="exceptionMsgString" type="xs:string"/>
+      <xs:element name="flagTreasury" type="xs:int"/>
+      <xs:element minOccurs="0" name="fundShort" type="xs:string"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="glCashReceiptDet" nillable="true" type="tns:glCashReceiptDet"/>
+      <xs:element name="glFormNo" type="xs:int"/>
+      <xs:element minOccurs="0" name="glVoucherDate" type="xs:dateTime"/>
+      <xs:element name="glVoucherNo" type="xs:long"/>
+      <xs:element name="logID" type="xs:long"/>
+      <xs:element minOccurs="0" name="narration" type="xs:string"/>
+      <xs:element name="periodID" type="xs:long"/>
+      <xs:element name="post" type="xs:int"/>
+      <xs:element minOccurs="0" name="remarksTreasury" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="glCashReceiptDet">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="creditAmount" type="xs:decimal"/>
+      <xs:element minOccurs="0" name="DMLType" type="xs:string"/>
+      <xs:element minOccurs="0" name="debitAmount" type="xs:decimal"/>
+      <xs:element minOccurs="0" name="employeeID" type="xs:string"/>
+      <xs:element minOccurs="0" name="exceptionMsgString" type="xs:string"/>
+      <xs:element name="glLineNo" type="xs:int"/>
+      <xs:element minOccurs="0" name="glMFCode" type="xs:string"/>
+      <xs:element minOccurs="0" name="glSLType" type="xs:string"/>
+      <xs:element name="glVoucherNo" type="xs:long"/>
+      <xs:element minOccurs="0" name="narration" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="glCurrency">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="currencyCode" type="xs:string"/>
+      <xs:element name="currencyID" type="xs:int"/>
+      <xs:element minOccurs="0" name="description" type="xs:string"/>
+      <xs:element minOccurs="0" name="exceptionMsgString" type="xs:string"/>
+      <xs:element name="logID" type="xs:long"/>
+      <xs:element name="post" type="xs:int"/>
+      <xs:element minOccurs="0" name="symbol" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="glFamilyType">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="exceptionMsgString" type="xs:string"/>
+      <xs:element minOccurs="0" name="glFamilyDesc" type="xs:string"/>
+      <xs:element minOccurs="0" name="glFamilyID" type="xs:string"/>
+      <xs:element minOccurs="0" name="glFamilyShort" type="xs:string"/>
+      <xs:element name="logID" type="xs:long"/>
+      <xs:element name="post" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="glFinancialPeriod">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="exceptionMsgString" type="xs:string"/>
+      <xs:element name="financialYear" type="xs:int"/>
+      <xs:element minOccurs="0" name="fromDate" type="xs:dateTime"/>
+      <xs:element name="isLocked" type="xs:int"/>
+      <xs:element name="logId" type="xs:long"/>
+      <xs:element minOccurs="0" name="periodDesc" type="xs:string"/>
+      <xs:element name="periodId" type="xs:int"/>
+      <xs:element minOccurs="0" name="periodShortName" type="xs:string"/>
+      <xs:element minOccurs="0" name="periodType" type="xs:string"/>
+      <xs:element name="posted" type="xs:int"/>
+      <xs:element minOccurs="0" name="toDate" type="xs:dateTime"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="glFinancialYears">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="description" type="xs:string"/>
+      <xs:element minOccurs="0" name="exceptionMsgString" type="xs:string"/>
+      <xs:element minOccurs="0" name="fromDate" type="xs:dateTime"/>
+      <xs:element name="isLocked" type="xs:int"/>
+      <xs:element name="logId" type="xs:long"/>
+      <xs:element name="posted" type="xs:int"/>
+      <xs:element minOccurs="0" name="toDate" type="xs:dateTime"/>
+      <xs:element name="yearCode" type="xs:int"/>
+      <xs:element name="yearId" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="glFormType">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="description" type="xs:string"/>
+      <xs:element minOccurs="0" name="exceptionMsgString" type="xs:string"/>
+      <xs:element minOccurs="0" name="formType" type="xs:string"/>
+      <xs:element name="logID" type="xs:long"/>
+      <xs:element name="post" type="xs:int"/>
+      <xs:element minOccurs="0" name="voucherInitialize" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="glJournalVoucher">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="bookTypeShort" type="xs:string"/>
+      <xs:element minOccurs="0" name="exceptionMsgString" type="xs:string"/>
+      <xs:element name="flagTreasury" type="xs:int"/>
+      <xs:element minOccurs="0" name="fundShort" type="xs:string"/>
+      <xs:element name="glFormNo" type="xs:int"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="glJournalDet" nillable="true" type="tns:glJournalDet"/>
+      <xs:element minOccurs="0" name="glVoucherDate" type="xs:dateTime"/>
+      <xs:element name="glVoucherNo" type="xs:long"/>
+      <xs:element name="logID" type="xs:long"/>
+      <xs:element minOccurs="0" name="narration" type="xs:string"/>
+      <xs:element name="periodID" type="xs:long"/>
+      <xs:element name="post" type="xs:int"/>
+      <xs:element minOccurs="0" name="remarksTreasury" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="glJournalDet">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="chequeNo" type="xs:string"/>
+      <xs:element minOccurs="0" name="creditAmount" type="xs:decimal"/>
+      <xs:element minOccurs="0" name="DMLType" type="xs:string"/>
+      <xs:element minOccurs="0" name="debitAmount" type="xs:decimal"/>
+      <xs:element minOccurs="0" name="employeeID" type="xs:string"/>
+      <xs:element minOccurs="0" name="exceptionMsgString" type="xs:string"/>
+      <xs:element name="glLineNo" type="xs:int"/>
+      <xs:element minOccurs="0" name="glMFCode" type="xs:string"/>
+      <xs:element minOccurs="0" name="glSLType" type="xs:string"/>
+      <xs:element name="glVoucherNo" type="xs:long"/>
+      <xs:element minOccurs="0" name="narration" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="glSlCode">
+    <xs:sequence>
+      <xs:element name="active" type="xs:int"/>
+      <xs:element minOccurs="0" name="exceptionMsgString" type="xs:string"/>
+      <xs:element name="logID" type="xs:long"/>
+      <xs:element name="post" type="xs:int"/>
+      <xs:element minOccurs="0" name="slCode" type="xs:string"/>
+      <xs:element minOccurs="0" name="slDescription" type="xs:string"/>
+      <xs:element minOccurs="0" name="slShortName" type="xs:string"/>
+      <xs:element name="slType" type="xs:long"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="glSlMapping">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="employeeID" type="xs:string"/>
+      <xs:element minOccurs="0" name="exceptionMsgString" type="xs:string"/>
+      <xs:element minOccurs="0" name="glMfCode" type="xs:string"/>
+      <xs:element name="glSlID" type="xs:long"/>
+      <xs:element minOccurs="0" name="glSlType" type="xs:string"/>
+      <xs:element name="logID" type="xs:long"/>
+      <xs:element name="post" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="glSlType">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="exceptionMsgString" type="xs:string"/>
+      <xs:element minOccurs="0" name="glSlType" type="xs:string"/>
+      <xs:element minOccurs="0" name="glSlTypeName" type="xs:string"/>
+      <xs:element name="logID" type="xs:long"/>
+      <xs:element name="post" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="template">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="exceptionMsgString" type="xs:string"/>
+      <xs:element minOccurs="0" name="fileName" type="xs:string"/>
+      <xs:element name="logID" type="xs:long"/>
+      <xs:element name="post" type="xs:int"/>
+      <xs:element minOccurs="0" name="shortName" type="xs:string"/>
+      <xs:element name="templateID" type="xs:long"/>
+      <xs:element minOccurs="0" name="templateName" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="glVoucherTemplateMf">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="bookTypeShort" type="xs:string"/>
+      <xs:element minOccurs="0" name="description" type="xs:string"/>
+      <xs:element minOccurs="0" name="exceptionMsgString" type="xs:string"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="glVoucherTemplateDet" nillable="true" type="tns:glVoucherTemplateDet"/>
+      <xs:element name="logID" type="xs:long"/>
+      <xs:element name="post" type="xs:int"/>
+      <xs:element name="templateID" type="xs:int"/>
+      <xs:element minOccurs="0" name="templateName" type="xs:string"/>
+      <xs:element minOccurs="0" name="typeShort" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="glVoucherTemplateDet">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="amount" type="xs:decimal"/>
+      <xs:element minOccurs="0" name="dmlType" type="xs:string"/>
+      <xs:element minOccurs="0" name="drCr" type="xs:string"/>
+      <xs:element minOccurs="0" name="employeeID" type="xs:string"/>
+      <xs:element minOccurs="0" name="exceptionMsgString" type="xs:string"/>
+      <xs:element name="glLineNo" type="xs:int"/>
+      <xs:element minOccurs="0" name="glMfCode" type="xs:string"/>
+      <xs:element minOccurs="0" name="glSlType" type="xs:string"/>
+      <xs:element minOccurs="0" name="narration" type="xs:string"/>
+      <xs:element name="templateID" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="glVoucherTemplateType">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="description" type="xs:string"/>
+      <xs:element minOccurs="0" name="exceptionMsgString" type="xs:string"/>
+      <xs:element name="logID" type="xs:long"/>
+      <xs:element minOccurs="0" name="typeShort" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="glmf">
+    <xs:sequence>
+      <xs:element name="detailCode" type="xs:int"/>
+      <xs:element minOccurs="0" name="exceptionMsgString" type="xs:string"/>
+      <xs:element minOccurs="0" name="familyID" type="xs:string"/>
+      <xs:element name="glActive" type="xs:int"/>
+      <xs:element minOccurs="0" name="glGeneralDetail" type="xs:string"/>
+      <xs:element minOccurs="0" name="glmfCode" type="xs:string"/>
+      <xs:element minOccurs="0" name="glmfDesc" type="xs:string"/>
+      <xs:element name="glmfLevel" type="xs:int"/>
+      <xs:element minOccurs="0" name="glmfParent" type="xs:string"/>
+      <xs:element name="logID" type="xs:long"/>
+      <xs:element name="post" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="importEmployee">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="accountNo" type="xs:string"/>
+      <xs:element name="active" type="xs:int"/>
+      <xs:element minOccurs="0" name="bankName" type="xs:string"/>
+      <xs:element minOccurs="0" name="bankShortName" type="xs:string"/>
+      <xs:element minOccurs="0" name="basicPay" type="xs:decimal"/>
+      <xs:element name="batchID" type="xs:long"/>
+      <xs:element minOccurs="0" name="branchShortName" type="xs:string"/>
+      <xs:element minOccurs="0" name="business" type="xs:string"/>
+      <xs:element minOccurs="0" name="costCentreID" type="xs:string"/>
+      <xs:element minOccurs="0" name="dateOfBirth" type="xs:dateTime"/>
+      <xs:element minOccurs="0" name="dateOfConfirmation" type="xs:dateTime"/>
+      <xs:element minOccurs="0" name="dateOfJoining" type="xs:dateTime"/>
+      <xs:element minOccurs="0" name="department" type="xs:string"/>
+      <xs:element minOccurs="0" name="designation" type="xs:string"/>
+      <xs:element minOccurs="0" name="email" type="xs:string"/>
+      <xs:element minOccurs="0" name="employeeFunction" type="xs:string"/>
+      <xs:element minOccurs="0" name="employeeGroup" type="xs:string"/>
+      <xs:element minOccurs="0" name="employeeID" type="xs:string"/>
+      <xs:element minOccurs="0" name="employeeName" type="xs:string"/>
+      <xs:element minOccurs="0" name="exceptionMsgString" type="xs:string"/>
+      <xs:element minOccurs="0" name="failReason" type="xs:string"/>
+      <xs:element minOccurs="0" name="firstName" type="xs:string"/>
+      <xs:element name="flagImport" type="xs:int"/>
+      <xs:element minOccurs="0" name="gender" type="xs:string"/>
+      <xs:element minOccurs="0" name="IBAN" type="xs:string"/>
+      <xs:element minOccurs="0" name="lastName" type="xs:string"/>
+      <xs:element minOccurs="0" name="lastWorkingDay" type="xs:dateTime"/>
+      <xs:element minOccurs="0" name="location" type="xs:string"/>
+      <xs:element minOccurs="0" name="managerID" type="xs:string"/>
+      <xs:element minOccurs="0" name="NIC" type="xs:string"/>
+      <xs:element minOccurs="0" name="nationality" type="xs:string"/>
+      <xs:element minOccurs="0" name="ntn" type="xs:string"/>
+      <xs:element name="onBehalfOf" type="xs:int"/>
+      <xs:element minOccurs="0" name="orgUnit" type="xs:string"/>
+      <xs:element minOccurs="0" name="reason" type="xs:string"/>
+      <xs:element name="recordID" type="xs:long"/>
+      <xs:element minOccurs="0" name="roleID" type="xs:string"/>
+      <xs:element minOccurs="0" name="status" type="xs:string"/>
+      <xs:element minOccurs="0" name="subFunction" type="xs:string"/>
+      <xs:element minOccurs="0" name="subGroup" type="xs:string"/>
+      <xs:element minOccurs="0" name="userID" type="xs:string"/>
+      <xs:element minOccurs="0" name="pAddress" type="xs:string"/>
+      <xs:element minOccurs="0" name="pCity" type="xs:string"/>
+      <xs:element minOccurs="0" name="pContact" type="xs:string"/>
+      <xs:element minOccurs="0" name="pCountry" type="xs:string"/>
+      <xs:element minOccurs="0" name="tAddress" type="xs:string"/>
+      <xs:element minOccurs="0" name="tCity" type="xs:string"/>
+      <xs:element minOccurs="0" name="tContact" type="xs:string"/>
+      <xs:element minOccurs="0" name="tCountry" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="importLoanApply">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="applyAmount" type="xs:decimal"/>
+      <xs:element minOccurs="0" name="applyDate" type="xs:dateTime"/>
+      <xs:element name="applyID" type="xs:long"/>
+      <xs:element minOccurs="0" name="approvedAmount" type="xs:decimal"/>
+      <xs:element name="batchID" type="xs:long"/>
+      <xs:element minOccurs="0" name="companyAmount" type="xs:decimal"/>
+      <xs:element minOccurs="0" name="employeeID" type="xs:string"/>
+      <xs:element minOccurs="0" name="exceptionMsgString" type="xs:string"/>
+      <xs:element minOccurs="0" name="failReason" type="xs:string"/>
+      <xs:element name="flagImport" type="xs:int"/>
+      <xs:element name="flagManager" type="xs:int"/>
+      <xs:element name="flagT1" type="xs:int"/>
+      <xs:element name="flagT2" type="xs:int"/>
+      <xs:element name="installments" type="xs:int"/>
+      <xs:element minOccurs="0" name="interestAmount" type="xs:decimal"/>
+      <xs:element minOccurs="0" name="interestRate" type="xs:decimal"/>
+      <xs:element name="loanTypeID" type="xs:long"/>
+      <xs:element name="logID" type="xs:long"/>
+      <xs:element minOccurs="0" name="monthlyInstallment" type="xs:decimal"/>
+      <xs:element name="outStanding" type="xs:int"/>
+      <xs:element name="post" type="xs:int"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="profileFiles" nillable="true" type="tns:profileFiles"/>
+      <xs:element minOccurs="0" name="purpose" type="xs:string"/>
+      <xs:element name="recordID" type="xs:long"/>
+      <xs:element minOccurs="0" name="remarksManager" type="xs:string"/>
+      <xs:element minOccurs="0" name="remarksT1" type="xs:string"/>
+      <xs:element minOccurs="0" name="remarksT2" type="xs:string"/>
+      <xs:element minOccurs="0" name="selfAmount" type="xs:decimal"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="profileFiles">
+    <xs:sequence>
+      <xs:element name="applyID" type="xs:long"/>
+      <xs:element minOccurs="0" name="employeeID" type="xs:string"/>
+      <xs:element minOccurs="0" name="fileData" type="xs:base64Binary"/>
+      <xs:element name="fileID" type="xs:long"/>
+      <xs:element minOccurs="0" name="fileName" type="xs:string"/>
+      <xs:element minOccurs="0" name="fileType" type="xs:string"/>
+      <xs:element name="logID" type="xs:long"/>
+      <xs:element name="post" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="importLoanPayment">
+    <xs:sequence>
+      <xs:element name="adjustLoanID" type="xs:long"/>
+      <xs:element minOccurs="0" name="bankShort" type="xs:string"/>
+      <xs:element name="batchID" type="xs:long"/>
+      <xs:element minOccurs="0" name="branchShort" type="xs:string"/>
+      <xs:element minOccurs="0" name="exceptionMsgString" type="xs:string"/>
+      <xs:element minOccurs="0" name="failReason" type="xs:string"/>
+      <xs:element name="flagImport" type="xs:int"/>
+      <xs:element minOccurs="0" name="iban" type="xs:string"/>
+      <xs:element minOccurs="0" name="loanAccountNo" type="xs:string"/>
+      <xs:element name="loanID" type="xs:long"/>
+      <xs:element name="loanPaymentID" type="xs:long"/>
+      <xs:element name="paymentAmount" type="xs:double"/>
+      <xs:element minOccurs="0" name="paymentDate" type="xs:dateTime"/>
+      <xs:element name="recordID" type="xs:long"/>
+      <xs:element name="zakat" type="xs:double"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="importPayroll">
+    <xs:sequence>
+      <xs:element name="batchID" type="xs:long"/>
+      <xs:element name="companyPensionContrib" type="xs:double"/>
+      <xs:element name="companyProvidentFundContrib" type="xs:double"/>
+      <xs:element minOccurs="0" name="employeeID" type="xs:string"/>
+      <xs:element minOccurs="0" name="failReason" type="xs:string"/>
+      <xs:element name="flagImport" type="xs:int"/>
+      <xs:element name="interestInstallment" type="xs:double"/>
+      <xs:element name="loanInstallment" type="xs:double"/>
+      <xs:element minOccurs="0" name="payRollDate" type="xs:dateTime"/>
+      <xs:element name="pensionerPayment" type="xs:double"/>
+      <xs:element name="recordID" type="xs:long"/>
+      <xs:element name="selfPensionContrib" type="xs:double"/>
+      <xs:element name="selfProvidentFundContrib" type="xs:double"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="loaderInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="loaderDescription" type="xs:string"/>
+      <xs:element name="loaderID" type="xs:long"/>
+      <xs:element minOccurs="0" name="loaderTypeID" type="xs:string"/>
+      <xs:element name="logID" type="xs:long"/>
+      <xs:element name="post" type="xs:int"/>
+      <xs:element minOccurs="0" name="shortName" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="loaderRun">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="batchDate" type="xs:dateTime"/>
+      <xs:element name="batchID" type="xs:long"/>
+      <xs:element minOccurs="0" name="employeeID" type="xs:string"/>
+      <xs:element minOccurs="0" name="exceptionMsgString" type="xs:string"/>
+      <xs:element name="loaderID" type="xs:long"/>
+      <xs:element name="logID" type="xs:long"/>
+      <xs:element name="post" type="xs:int"/>
+      <xs:element minOccurs="0" name="sessionID" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="loanApply">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="applyAmount" type="xs:decimal"/>
+      <xs:element minOccurs="0" name="applyDate" type="xs:dateTime"/>
+      <xs:element name="applyID" type="xs:long"/>
+      <xs:element minOccurs="0" name="approvedAmount" type="xs:decimal"/>
+      <xs:element name="batchID" type="xs:long"/>
+      <xs:element minOccurs="0" name="eligibleAmount" type="xs:decimal"/>
+      <xs:element minOccurs="0" name="employeeID" type="xs:string"/>
+      <xs:element minOccurs="0" name="exceptionMsgString" type="xs:string"/>
+      <xs:element name="installmentNo" type="xs:int"/>
+      <xs:element minOccurs="0" name="interestAmount" type="xs:decimal"/>
+      <xs:element name="loanID" type="xs:long"/>
+      <xs:element name="loanTypeID" type="xs:long"/>
+      <xs:element name="logID" type="xs:long"/>
+      <xs:element minOccurs="0" name="monthlyInstallment" type="xs:decimal"/>
+      <xs:element name="periodID" type="xs:long"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="profileFiles" nillable="true" type="tns:profileFiles"/>
+      <xs:element name="recordID" type="xs:long"/>
+      <xs:element minOccurs="0" name="transBatchID" type="xs:long"/>
+      <xs:element name="uploadBatchID" type="xs:long"/>
+      <xs:element name="uploadRecordID" type="xs:long"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="loanDef">
+    <xs:sequence>
+      <xs:element name="ageDependent" type="xs:int"/>
+      <xs:element minOccurs="0" name="conditions" type="xs:string"/>
+      <xs:element minOccurs="0" name="description" type="xs:string"/>
+      <xs:element minOccurs="0" name="exceptionMsgString" type="xs:string"/>
+      <xs:element name="fundBalance" type="xs:int"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="loanAgeDef" nillable="true" type="tns:loanAgeDef"/>
+      <xs:element minOccurs="0" name="loanDefDate" type="xs:dateTime"/>
+      <xs:element name="loanTypeId" type="xs:long"/>
+      <xs:element minOccurs="0" name="loanTypeName" type="xs:string"/>
+      <xs:element name="logID" type="xs:long"/>
+      <xs:element name="refundable" type="xs:int"/>
+      <xs:element name="salaryMonths" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="loanAgeDef">
+    <xs:sequence>
+      <xs:element name="age" type="xs:int"/>
+      <xs:element minOccurs="0" name="dmlType" type="xs:string"/>
+      <xs:element name="fundPercentage" type="xs:int"/>
+      <xs:element name="loanTypeID" type="xs:long"/>
+      <xs:element minOccurs="0" name="logicalOperator" type="xs:string"/>
+      <xs:element name="sequence" type="xs:long"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="loanPayment">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="accountNumber" type="xs:string"/>
+      <xs:element name="adjustLoanID" type="xs:long"/>
+      <xs:element minOccurs="0" name="bankShort" type="xs:string"/>
+      <xs:element name="batchID" type="xs:long"/>
+      <xs:element minOccurs="0" name="branchShort" type="xs:string"/>
+      <xs:element name="companyAmount" type="xs:double"/>
+      <xs:element minOccurs="0" name="exceptionMsgString" type="xs:string"/>
+      <xs:element minOccurs="0" name="IBAN" type="xs:string"/>
+      <xs:element name="loanID" type="xs:long"/>
+      <xs:element name="loanPaymentID" type="xs:long"/>
+      <xs:element name="logID" type="xs:long"/>
+      <xs:element name="paymentAmount" type="xs:double"/>
+      <xs:element minOccurs="0" name="paymentDate" type="xs:dateTime"/>
+      <xs:element name="post" type="xs:int"/>
+      <xs:element name="recordID" type="xs:long"/>
+      <xs:element name="selfAmount" type="xs:double"/>
+      <xs:element name="zakat" type="xs:double"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="loanSchedule">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="installmentAmount" type="xs:decimal"/>
+      <xs:element minOccurs="0" name="interestAmount" type="xs:decimal"/>
+      <xs:element name="interestRate" type="xs:int"/>
+      <xs:element name="loanId" type="xs:long"/>
+      <xs:element name="logID" type="xs:long"/>
+      <xs:element name="periodId" type="xs:long"/>
+      <xs:element name="posted" type="xs:int"/>
+      <xs:element minOccurs="0" name="principalAmount" type="xs:decimal"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="loan">
+    <xs:sequence>
+      <xs:element name="applyId" type="xs:long"/>
+      <xs:element minOccurs="0" name="companyAmount" type="xs:decimal"/>
+      <xs:element minOccurs="0" name="employeeId" type="xs:string"/>
+      <xs:element minOccurs="0" name="interestAmount" type="xs:decimal"/>
+      <xs:element minOccurs="0" name="interestRate" type="xs:decimal"/>
+      <xs:element minOccurs="0" name="loanAmount" type="xs:decimal"/>
+      <xs:element minOccurs="0" name="loanDate" type="xs:dateTime"/>
+      <xs:element name="loanId" type="xs:long"/>
+      <xs:element name="loanTypeId" type="xs:long"/>
+      <xs:element name="logID" type="xs:long"/>
+      <xs:element minOccurs="0" name="monthlyInstallment" type="xs:decimal"/>
+      <xs:element name="numOfInstallments" type="xs:int"/>
+      <xs:element name="outstanding" type="xs:int"/>
+      <xs:element name="posted" type="xs:int"/>
+      <xs:element minOccurs="0" name="selfAmount" type="xs:decimal"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="loanSettlement">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="employeeID" type="xs:string"/>
+      <xs:element minOccurs="0" name="exceptionMsgString" type="xs:string"/>
+      <xs:element minOccurs="0" name="interestAmount" type="xs:decimal"/>
+      <xs:element name="loanID" type="xs:long"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="loanSettlementFiles" nillable="true" type="tns:loanSettlementFiles"/>
+      <xs:element name="logID" type="xs:long"/>
+      <xs:element name="post" type="xs:int"/>
+      <xs:element minOccurs="0" name="principalAmount" type="xs:decimal"/>
+      <xs:element minOccurs="0" name="settlementDate" type="xs:dateTime"/>
+      <xs:element name="settlementID" type="xs:long"/>
+      <xs:element minOccurs="0" name="settlementTypeID" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="loanSettlementFiles">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="employeeID" type="xs:string"/>
+      <xs:element minOccurs="0" name="fileData" type="xs:base64Binary"/>
+      <xs:element name="fileID" type="xs:long"/>
+      <xs:element minOccurs="0" name="fileName" type="xs:string"/>
+      <xs:element minOccurs="0" name="fileType" type="xs:string"/>
+      <xs:element name="logID" type="xs:long"/>
+      <xs:element name="post" type="xs:int"/>
+      <xs:element name="settlementID" type="xs:long"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="loanType">
+    <xs:sequence>
+      <xs:element name="balance" type="xs:int"/>
+      <xs:element minOccurs="0" name="circumstances" type="xs:string"/>
+      <xs:element minOccurs="0" name="conditions" type="xs:string"/>
+      <xs:element minOccurs="0" name="exceptionMsgString" type="xs:string"/>
+      <xs:element minOccurs="0" name="limits" type="xs:string"/>
+      <xs:element name="loanTypeId" type="xs:long"/>
+      <xs:element minOccurs="0" name="loanTypeName" type="xs:string"/>
+      <xs:element name="logID" type="xs:long"/>
+      <xs:element name="minServiceMonths" type="xs:int"/>
+      <xs:element name="posted" type="xs:int"/>
+      <xs:element name="refundable" type="xs:int"/>
+      <xs:element name="salary" type="xs:int"/>
+      <xs:element minOccurs="0" name="shortName" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="payroll">
+    <xs:sequence>
+      <xs:element name="batchId" type="xs:long"/>
+      <xs:element minOccurs="0" name="employeeId" type="xs:string"/>
+      <xs:element minOccurs="0" name="exceptionMsgString" type="xs:string"/>
+      <xs:element name="logId" type="xs:long"/>
+      <xs:element name="periodId" type="xs:long"/>
+      <xs:element name="post" type="xs:int"/>
+      <xs:element name="recordId" type="xs:long"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="payRollLoan">
+    <xs:sequence>
+      <xs:element name="batchId" type="xs:long"/>
+      <xs:element minOccurs="0" name="employeeId" type="xs:string"/>
+      <xs:element minOccurs="0" name="exceptionMsgString" type="xs:string"/>
+      <xs:element name="interestInstallment" type="xs:double"/>
+      <xs:element name="loanInstallment" type="xs:double"/>
+      <xs:element name="pensionerPayment" type="xs:double"/>
+      <xs:element name="periodId" type="xs:long"/>
+      <xs:element name="recordId" type="xs:long"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="payRollPFContribution">
+    <xs:sequence>
+      <xs:element name="batchId" type="xs:long"/>
+      <xs:element name="companyPfContribution" type="xs:double"/>
+      <xs:element minOccurs="0" name="employeeId" type="xs:string"/>
+      <xs:element minOccurs="0" name="exceptionMsgString" type="xs:string"/>
+      <xs:element name="periodId" type="xs:long"/>
+      <xs:element name="recordId" type="xs:long"/>
+      <xs:element name="selfPfContribution" type="xs:double"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="payRollPNContribution">
+    <xs:sequence>
+      <xs:element name="batchId" type="xs:long"/>
+      <xs:element name="companyPnContribution" type="xs:double"/>
+      <xs:element minOccurs="0" name="employeeId" type="xs:string"/>
+      <xs:element minOccurs="0" name="exceptionMsgString" type="xs:string"/>
+      <xs:element name="periodId" type="xs:long"/>
+      <xs:element name="recordId" type="xs:long"/>
+      <xs:element name="selfPnContribution" type="xs:double"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="loanInterestRate">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="exceptionMsgString" type="xs:string"/>
+      <xs:element minOccurs="0" name="fromDate" type="xs:dateTime"/>
+      <xs:element name="interestRate" type="xs:double"/>
+      <xs:element name="interestRateID" type="xs:long"/>
+      <xs:element name="logID" type="xs:long"/>
+      <xs:element name="post" type="xs:int"/>
+      <xs:element minOccurs="0" name="toDate" type="xs:dateTime"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="roleDetail">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="employeeRightsBean" type="tns:employeeRights"/>
+      <xs:element minOccurs="0" name="menuDescription" type="xs:string"/>
+      <xs:element name="menuID" type="xs:long"/>
+      <xs:element minOccurs="0" name="operationID" type="xs:string"/>
+      <xs:element name="post" type="xs:int"/>
+      <xs:element minOccurs="0" name="roleID" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="roleType">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="exceptionMsgString" type="xs:string"/>
+      <xs:element name="logID" type="xs:long"/>
+      <xs:element name="post" type="xs:int"/>
+      <xs:element minOccurs="0" name="roleTypeDescription" type="xs:string"/>
+      <xs:element minOccurs="0" name="roleTypeID" type="xs:string"/>
+      <xs:element minOccurs="0" name="shortName" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="roles">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="exceptionMsgString" type="xs:string"/>
+      <xs:element name="logID" type="xs:long"/>
+      <xs:element name="post" type="xs:int"/>
+      <xs:element minOccurs="0" name="roleDescription" type="xs:string"/>
+      <xs:element minOccurs="0" name="roleId" type="xs:string"/>
+      <xs:element minOccurs="0" name="roleTypeID" type="xs:string"/>
+      <xs:element minOccurs="0" name="shortName" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="wfEventAction">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="actionDescription" type="xs:string"/>
+      <xs:element name="actionID" type="xs:int"/>
+      <xs:element minOccurs="0" name="actionName" type="xs:string"/>
+      <xs:element minOccurs="0" name="exceptionMsgString" type="xs:string"/>
+      <xs:element name="logID" type="xs:long"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="wfEventType">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="eventShortName" type="xs:string"/>
+      <xs:element minOccurs="0" name="eventType" type="xs:string"/>
+      <xs:element minOccurs="0" name="eventTypeName" type="xs:string"/>
+      <xs:element minOccurs="0" name="exceptionMsgString" type="xs:string"/>
+      <xs:element name="logID" type="xs:long"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="wfMF">
+    <xs:sequence>
+      <xs:element name="actionID" type="xs:int"/>
+      <xs:element minOccurs="0" name="eventType" type="xs:string"/>
+      <xs:element minOccurs="0" name="exceptionMsgString" type="xs:string"/>
+      <xs:element name="logID" type="xs:long"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="wfTransitions" nillable="true" type="tns:wfDetail"/>
+      <xs:element name="workFlowId" type="xs:long"/>
+      <xs:element minOccurs="0" name="workFlowName" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="wfDetail">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="fromTransition" type="xs:string"/>
+      <xs:element name="isMemberEmail" type="xs:int"/>
+      <xs:element name="memberEmail" type="xs:boolean"/>
+      <xs:element minOccurs="0" name="toTransition" type="xs:string"/>
+      <xs:element name="wfDetailID" type="xs:long"/>
+      <xs:element name="workFlowId" type="xs:long"/>
+      <xs:element name="workFlowSeq" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="wfTransition">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="exceptionMsg" type="xs:string"/>
+      <xs:element name="logID" type="xs:long"/>
+      <xs:element minOccurs="0" name="transitionCode" type="xs:string"/>
+      <xs:element minOccurs="0" name="transitionName" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="executeDMLRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="tns:dmlTransWrapper"/>
+      <xs:element minOccurs="0" name="arg1" type="xs:string"/>
+      <xs:element minOccurs="0" name="arg2" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="dmlTransWrapper">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="bankBean" type="tns:bank"/>
+      <xs:element minOccurs="0" name="bankBranchBean" type="tns:glBankBranch"/>
+      <xs:element minOccurs="0" name="branchBean" type="tns:glBranch"/>
+      <xs:element minOccurs="0" name="cityBean" type="tns:city"/>
+      <xs:element minOccurs="0" name="costCentreBean" type="tns:costCentre"/>
+      <xs:element minOccurs="0" name="countryBean" type="tns:country"/>
+      <xs:element minOccurs="0" name="currencyBean" type="tns:glCurrency"/>
+      <xs:element minOccurs="0" name="employee" type="tns:employee"/>
+      <xs:element minOccurs="0" name="employeeTypeBean" type="tns:employeeType"/>
+      <xs:element minOccurs="0" name="fundBean" type="tns:fund"/>
+      <xs:element minOccurs="0" name="fundCategoryBean" type="tns:fundCategory"/>
+      <xs:element minOccurs="0" name="generalRequestBean" type="tns:generalRequestBean"/>
+      <xs:element minOccurs="0" name="glBankPaymentVoucher" type="tns:glBankPaymentVoucher"/>
+      <xs:element minOccurs="0" name="glBankReceiptVoucher" type="tns:glBankReceiptVoucher"/>
+      <xs:element minOccurs="0" name="glCashPaymentVoucher" type="tns:glCashPaymentVoucher"/>
+      <xs:element minOccurs="0" name="glCashReceiptVoucher" type="tns:glCashReceiptVoucher"/>
+      <xs:element minOccurs="0" name="glFinancialPeriod" type="tns:glFinancialPeriod"/>
+      <xs:element minOccurs="0" name="glFinancialYears" type="tns:glFinancialYears"/>
+      <xs:element minOccurs="0" name="glFormType" type="tns:glFormType"/>
+      <xs:element minOccurs="0" name="glJournalVoucher" type="tns:glJournalVoucher"/>
+      <xs:element minOccurs="0" name="glSlCode" type="tns:glSlCode"/>
+      <xs:element minOccurs="0" name="glSlMapping" type="tns:glSlMapping"/>
+      <xs:element minOccurs="0" name="glSlType" type="tns:glSlType"/>
+      <xs:element minOccurs="0" name="glVoucherTemplateMfBean" type="tns:glVoucherTemplateMf"/>
+      <xs:element minOccurs="0" name="glVoucherTemplateType" type="tns:glVoucherTemplateType"/>
+      <xs:element minOccurs="0" name="glbookType" type="tns:glBookType"/>
+      <xs:element minOccurs="0" name="glmf" type="tns:glmf"/>
+      <xs:element minOccurs="0" name="importEmployee" type="tns:importEmployee"/>
+      <xs:element minOccurs="0" name="importLoanApply" type="tns:importLoanApply"/>
+      <xs:element minOccurs="0" name="importLoanPayment" type="tns:importLoanPayment"/>
+      <xs:element minOccurs="0" name="importPayroll" type="tns:importPayroll"/>
+      <xs:element minOccurs="0" name="loan" type="tns:loan"/>
+      <xs:element minOccurs="0" name="loanApplyBalLimit" type="tns:loanApplyBalLimit"/>
+      <xs:element minOccurs="0" name="loanApprovalBean" type="tns:loanApply"/>
+      <xs:element minOccurs="0" name="loanDefBean" type="tns:loanDef"/>
+      <xs:element minOccurs="0" name="loanInterestRateBean" type="tns:loanInterestRate"/>
+      <xs:element minOccurs="0" name="loanPayment" type="tns:loanPayment"/>
+      <xs:element minOccurs="0" name="loanSettlement" type="tns:loanSettlement"/>
+      <xs:element minOccurs="0" name="loanType" type="tns:loanType"/>
+      <xs:element minOccurs="0" name="loginEmployee" type="tns:loginEmployee"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="roleDetailList" nillable="true" type="tns:roleDetail"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="roleDetailLookUpList" nillable="true" type="tns:roleDetail"/>
+      <xs:element minOccurs="0" name="templateBean" type="tns:template"/>
+      <xs:element minOccurs="0" name="uploaderRequest" type="tns:uploaderRequest"/>
+      <xs:element minOccurs="0" name="userRoleBean" type="tns:roles"/>
+      <xs:element minOccurs="0" name="wfEventAction" type="tns:wfEventAction"/>
+      <xs:element minOccurs="0" name="wfEventType" type="tns:wfEventType"/>
+      <xs:element minOccurs="0" name="wfMFBean" type="tns:wfMF"/>
+      <xs:element minOccurs="0" name="wfTransitionBean" type="tns:wfTransition"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="fundCategory">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="description" type="xs:string"/>
+      <xs:element name="fundCategoryID" type="xs:int"/>
+      <xs:element name="logID" type="xs:long"/>
+      <xs:element name="post" type="xs:int"/>
+      <xs:element minOccurs="0" name="shortName" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="generalRequestBean">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="param1" type="xs:string"/>
+      <xs:element minOccurs="0" name="param2" type="xs:string"/>
+      <xs:element minOccurs="0" name="param3" type="xs:string"/>
+      <xs:element minOccurs="0" name="requestType" type="xs:string"/>
+      <xs:element minOccurs="0" name="result1" type="xs:string"/>
+      <xs:element minOccurs="0" name="result2" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="loanApplyBalLimit">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="applyAmount" type="xs:decimal"/>
+      <xs:element minOccurs="0" name="applyLimit" type="xs:decimal"/>
+      <xs:element minOccurs="0" name="balance" type="xs:decimal"/>
+      <xs:element minOccurs="0" name="date" type="xs:dateTime"/>
+      <xs:element minOccurs="0" name="employeeID" type="xs:string"/>
+      <xs:element minOccurs="0" name="interestAmount" type="xs:decimal"/>
+      <xs:element name="loanTypeID" type="xs:long"/>
+      <xs:element minOccurs="0" name="previousInterest" type="xs:decimal"/>
+      <xs:element minOccurs="0" name="previousPrincipal" type="xs:decimal"/>
+      <xs:element minOccurs="0" name="requestType" type="xs:string"/>
+      <xs:element minOccurs="0" name="zakatAmount" type="xs:decimal"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="uploaderRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="employeeID" type="xs:string"/>
+      <xs:element minOccurs="0" name="uploaderFilePathName" type="xs:string"/>
+      <xs:element minOccurs="0" name="uploaderResponse" type="xs:string"/>
+      <xs:element minOccurs="0" name="uploaderTypeID" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="executeDMLRequestResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:dmlTransWrapper"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Exception" type="tns:Exception"/>
+  <xs:complexType name="Exception">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="message" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

@@ -1,0 +1,486 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:jaxws="http://cxf.apache.org/jaxws"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+		http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+
+	<context:property-placeholder location="WEB-INF/resources/assetConnectProperties.properties"
+		ignore-resource-not-found="false" ignore-unresolvable="false" />
+		
+	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
+		<property name="driverClassName" value="${jdbc.microsoft.driverClassName}"/>
+	 	<property name="url" value="${jdbc.microsoft.url}"/>
+	</bean>
+	
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="hibernateProperties">
+		  <props>
+		   <prop key="hibernate.dialect">org.hibernate.dialect.SQLServerDialect</prop>
+		   <prop key="hibernate.show_sql">true</prop>
+		   <prop key="hibernate.format_sql">true</prop>
+		  </props>
+		</property>
+		<property name="mappingResources">
+		  <list>
+		    <value>hibernateResourceMapping/modulemenu.hbm.xml</value> 
+		  </list>
+		</property>	
+	</bean>
+	
+	<bean id="hibernateTemplate" class="org.springframework.orm.hibernate4.HibernateTemplate">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+		
+	<!--tx:annotation-driven/  -->
+	<bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	 </bean>
+	 
+	 <!-- spring datasource transaction manager -->
+	<bean id="springDSTransacManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource"/>
+	 </bean>
+	 
+	 <bean id="hibernateDMLOperations" class="database.HDMLOperations">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<!-- /////////////////////////////////Mapping for Definition Loader /////////////////////////////////// -->
+	<bean id="definitionLoader"  class="app.DefinitionLoader"
+    	abstract="false" autowire="byType" autowire-candidate="true"
+    	scope="singleton">    	
+    </bean>    
+    <bean id="bankDef"  class="app.def.BankDef"
+    	abstract="false" autowire="byType" autowire-candidate="true"
+    	scope="singleton">    	
+    	<property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    <bean id="employeeTypeDef"  class="app.def.EmployeeTypeDef"
+    	abstract="false" autowire="byType" autowire-candidate="true"
+    	scope="singleton">    	
+    	<property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    <bean id="templateDef"  class="app.def.TemplateDef"
+    	abstract="false" autowire="byType" autowire-candidate="true"
+    	scope="singleton">    	
+    	<property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    <bean id="glBookTypeDef"  class="app.def.GlBookTypeDef"
+    	abstract="false" autowire="byType" autowire-candidate="true"
+    	scope="singleton">    	
+    	<property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+     <bean id="glSlTypeDef"  class="app.def.GlSlTypeDef"
+    	abstract="false" autowire="byType" autowire-candidate="true"
+    	scope="singleton">    	
+    	<property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+     <bean id="glSlMappingDef"  class="app.def.GlSlMappingDef"
+    	abstract="false" autowire="byType" autowire-candidate="true"
+    	scope="singleton">    	
+    	<property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    <bean id="payRollDef"  class="app.def.PayRollDef"
+    	abstract="false" autowire="byType" autowire-candidate="true"
+    	scope="singleton">    	
+    </bean> 
+    <bean id="payRollLoanDef"  class="app.def.PayRollLoanDef"
+    	abstract="false" autowire="byType" autowire-candidate="true"
+    	scope="singleton">    	
+    </bean><bean id="payRollPFContributionDef"  class="app.def.PayRollPFContributionDef"
+    	abstract="false" autowire="byType" autowire-candidate="true"
+    	scope="singleton">    	
+    </bean>
+    <bean id="payRollPNContributionDef"  class="app.def.PayRollPNContributionDef"
+    	abstract="false" autowire="byType" autowire-candidate="true"
+    	scope="singleton">    	
+    </bean>
+    <bean id="branchDef"  class="app.def.BranchDef"
+    	abstract="false" autowire="byType" autowire-candidate="true"
+    	scope="singleton">    	
+    	<property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    <bean id="bankBranchDef"  class="app.def.BankBranchDef"
+    	abstract="false" autowire="byType" autowire-candidate="true"
+    	scope="singleton">
+    	<property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    <bean id="cityDef"  class="app.def.CityDef"
+    	abstract="false" autowire="byType" autowire-candidate="true"
+    	scope="singleton">
+    	<property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    <bean id="costCentreDef"  class="app.def.CostCentreDef"
+    	abstract="false" autowire="byType" autowire-candidate="true"
+    	scope="singleton">
+    	<property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    <bean id="countryDef"  class="app.def.CountryDef"
+    	abstract="false" autowire="byType" autowire-candidate="true"
+    	scope="singleton">
+    	<property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    <bean id="financialPeriodDef"  class="app.def.FinancialPeriodDef"
+    	abstract="false" autowire="byType" autowire-candidate="true"
+    	scope="singleton">
+    	<property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    <bean id="financialYearsDef"  class="app.def.FinancialYearsDef"
+    	abstract="false" autowire="byType" autowire-candidate="true"
+    	scope="singleton">
+    	<property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    <bean id="glCurrencyDef"  class="app.def.GlCurrencyDef"
+    	abstract="false" autowire="byType" autowire-candidate="true"
+    	scope="singleton">
+    	<property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    <bean id="GLDef" name="GLDef" class="app.def.GLDef"
+    	abstract="false" autowire="byType" autowire-candidate="true"
+    	scope="singleton">
+    </bean>
+    <bean id="glFamilyDef" class="app.def.GlFamilyDef"
+    	abstract="false" autowire="byType" autowire-candidate="true"
+    	scope="singleton">
+    </bean>
+    <bean id="loaderInfoDef"  class="app.transacs.LoaderInfoTransacs"
+    	abstract="false" autowire="byType" autowire-candidate="true"
+    	scope="singleton">
+    </bean>
+    <bean id="glJournalTransacs"  class="app.transacs.GlJournalTransacs"
+    	abstract="false" autowire="byType" autowire-candidate="true"
+    	scope="singleton">
+    	<property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    <bean id="glBankPaymentTransacs"  class="app.transacs.GlBankPaymentTransacs"
+    	abstract="false" autowire="byType" autowire-candidate="true"
+    	scope="singleton">
+    	<property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    <bean id="glBankReceiptTransacs"  class="app.transacs.GlBankReceiptTransacs"
+    	abstract="false" autowire="byType" autowire-candidate="true"
+    	scope="singleton">
+    	<property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    <bean id="glCashPaymentTransacs"  class="app.transacs.GlCashPaymentTransacs"
+    	abstract="false" autowire="byType" autowire-candidate="true"
+    	scope="singleton">
+    	<property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    <bean id="glCashReceiptTransacs"  class="app.transacs.GlCashReceiptTransacs"
+    	abstract="false" autowire="byType" autowire-candidate="true"
+    	scope="singleton">
+    	<property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    <bean id="loanTypeDef"  class="app.def.LoanTypeDef"
+    	abstract="false" autowire="byType" autowire-candidate="true"
+    	scope="singleton">
+    	<property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    <bean id="roleTypeDef"  class="app.def.RoleTypeDef"
+    	abstract="false" autowire="byType" autowire-candidate="true"
+    	scope="singleton">
+    	<property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    <bean id="userRoleDef"  class="app.admin.UserRoleAdmin"
+    	abstract="false" autowire="byType" autowire-candidate="true"
+    	scope="singleton">
+    	<property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    <bean id="loanInterestRateDef"  class="app.def.LoanInterestRateDef"
+    	abstract="false" autowire="byType" autowire-candidate="true"
+    	scope="singleton">
+    	<property name="sessionFactory" ref="sessionFactory" />
+    </bean>   
+ 	<bean id="glSlCodeDef"  class="app.def.GlSlCodeDef"
+    	abstract="false" autowire="byType" autowire-candidate="true"
+    	scope="singleton">
+    	<property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+	<bean id="fundDef" class="app.def.FundDef" abstract="false"
+		autowire="byType" autowire-candidate="true" scope="singleton">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<bean id="glFormTypeDef" class="app.def.GlFormTypeDef" abstract="false"
+		autowire="byType" autowire-candidate="true" scope="singleton">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+   
+    <!-- //////////////////////////// Mapping for DML Executor Loader ////////////////////////////// -->
+    
+    <bean id="bankDMLExecutor"  class="dml.def.BankDefDML"
+    	abstract="false" autowire="byType" autowire-candidate="true"
+    	scope="singleton">
+    	<property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    <bean id="templateDMLExecutor"  class="dml.def.TemplateDefDML"
+    	abstract="false" autowire="byType" autowire-candidate="true"
+    	scope="singleton">
+    	<property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    <bean id="employeeTypeDMLExecutor"  class="dml.def.EmployeeTypeDefDML"
+    	abstract="false" autowire="byType" autowire-candidate="true"
+    	scope="singleton">
+    	<property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    <bean id="bankBranchDMLExecutor"  class="dml.def.BankBranchDefDML"
+    	abstract="false" autowire="byType" autowire-candidate="true"
+    	scope="singleton">
+    	<property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    <bean id="cityDMLExecutor"  class="dml.def.CityDefDML"
+    	abstract="false" autowire="byType" autowire-candidate="true"
+    	scope="singleton">
+    	<property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    <bean id="costCentreDMLExecutor"  class="dml.def.CostCentreDefDML"
+    	abstract="false" autowire="byType" autowire-candidate="true"
+    	scope="singleton">
+    	<property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    <bean id="countryDMLExecutor"  class="dml.def.CountryDefDML"
+    	abstract="false" autowire="byType" autowire-candidate="true"
+    	scope="singleton">
+    	<property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    <bean id="employeeDMLExecutor"  class="dml.transacs.EmployeeTransacsDML"
+    	abstract="false" autowire="byType" autowire-candidate="true"
+    	scope="singleton">
+    	<property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    <bean id="employeeRoleMappAdminDML"  class="dml.admin.EmployeeRoleMappAdminDML"
+    	abstract="false" autowire="byType" autowire-candidate="true"
+    	scope="singleton">
+    </bean>
+    <bean id="financialPeriodDMLExecutor"  class="dml.def.FinancialPeriodDefDML"
+    	abstract="false" autowire="byType" autowire-candidate="true"
+    	scope="singleton">
+    	<property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    <bean id="financialYearsDMLExecutor"  class="dml.def.FinancialYearsDefDML"
+    	abstract="false" autowire="byType" autowire-candidate="true"
+    	scope="singleton">
+    	<property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    <bean id="glCurrencyDMLExecutor"  class="dml.def.CurrencyDefDML"
+    	abstract="false" autowire="byType" autowire-candidate="true"
+    	scope="singleton">
+    	<property name="sessionFactory" ref="sessionFactory" />
+    </bean>  
+    <bean id="loanTypeDMLExecutor"  class="dml.def.LoanTypeDefDML"
+     	abstract="false" autowire="byType" autowire-candidate="true"
+    	scope="singleton">
+    	<property name="sessionFactory" ref="sessionFactory" />
+    </bean>  
+    <bean id="loanApprovalDMLExecutor"  class="dml.transacs.LoanApprovalTransacsDML"
+    	abstract="false" autowire="byType" autowire-candidate="true"
+    	scope="singleton">
+    	<property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    <bean id="userRoleDMLExecutor"  class="dml.admin.UserRoleAdminDML"
+    	abstract="false" autowire="byType" autowire-candidate="true"
+    	scope="singleton">
+    	<property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    <bean id="loanPaymentDMLExecutor"  class="dml.transacs.LoanPaymentTransacsDML"
+    	abstract="false" autowire="byType" autowire-candidate="true" scope="singleton">
+    	<property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+          
+    <bean id="branchDMLExecutor"  class="dml.def.BranchDefDML"
+    	abstract="false" autowire="byType" autowire-candidate="true"
+    	scope="singleton">
+    	<property name="sessionFactory" ref="sessionFactory" />
+    </bean>  
+    <bean id="importEmployeeTransacsDML"  class="dml.transacs.ImportEmployeeTransacsDML"
+    	abstract="false" autowire="byType" autowire-candidate="true"
+    	scope="singleton">
+    	<property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    <bean id="importPayrollTransacsDML"  class="dml.transacs.ImportPayrollTransacsDML"
+    	abstract="false" autowire="byType" autowire-candidate="true"
+    	scope="singleton">
+    	<property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    <bean id="loanApplyBalLimitDMLExecutor" class="dml.transacs.LoanApplyBalLimitTransacsDML"
+		abstract="false" autowire="byType" autowire-candidate="true" scope="singleton">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<bean id="loanInterestRateDMLExecutor" class="dml.def.LoanInterestRateDefDML"
+		abstract="false" autowire="byType" autowire-candidate="true" scope="singleton">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<bean id="importLoanApplyTransacsDML" class="dml.transacs.ImportLoanApplyTransacsDML"
+		abstract="false" autowire="byType" autowire-candidate="true" scope="singleton">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	 <bean id="importLoanPaymentTransacsDML" class="dml.transacs.ImportLoanPaymentTransacsDML"
+		abstract="false" autowire="byType" autowire-candidate="true" scope="singleton">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+  	<bean id="glSlCodeDefDML"  class="dml.def.GlSlCodeDefDML"
+    	abstract="false" autowire="byType" autowire-candidate="true"
+    	scope="singleton">
+    	<property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    <bean id="glmfDMLExecutor"  class="dml.def.GlmfDefDML"
+    	abstract="false" autowire="byType" autowire-candidate="true"
+    	scope="singleton">
+    	<property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    <bean id="glBookTypeDMLExecutor"  class="dml.def.GlBookTypeDefDML"
+    	abstract="false" autowire="byType" autowire-candidate="true"
+    	scope="singleton">
+    	<property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    <bean id="glSlTypeDMLExecutor"  class="dml.def.GlSlTypeDefDML" 
+    	abstract="false" autowire="byType" autowire-candidate="true"
+    	scope="singleton">
+    	<property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    <bean id="glSlMappingDMLExecutor"  class="dml.def.GlSlMappingDefDML"
+    	abstract="false" autowire="byType" autowire-candidate="true"
+    	scope="singleton">
+    	<property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    <bean id="glJournalTransacsDMLExecutor" class="dml.transacs.GLJournalTransacsDML"
+		abstract="false" autowire="byType" autowire-candidate="true" scope="singleton">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="glBankPaymentTransacsDMLExecutor" class="dml.transacs.GLBankPaymentTransacsDML"
+		abstract="false" autowire="byType" autowire-candidate="true" scope="singleton">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<bean id="glBankReceiptTransacsDMLExecutor" class="dml.transacs.GLBankReceiptTransacsDML"
+		abstract="false" autowire="byType" autowire-candidate="true" scope="singleton">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="glCashPaymentTransacsDMLExecutor" class="dml.transacs.GLCashPaymentTransacsDML"
+		abstract="false" autowire="byType" autowire-candidate="true" scope="singleton">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="glCashReceiptTransacsDMLExecutor" class="dml.transacs.GLCashReceiptTransacsDML"
+		abstract="false" autowire="byType" autowire-candidate="true" scope="singleton">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="glFormTypeDMLExecutor" class="dml.def.GlFormTypeDefDML"
+		abstract="false" autowire="byType" autowire-candidate="true" scope="singleton">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="generalRequestDMLExecutor" class="dml.def.GeneralRequestDML"
+		abstract="false" autowire="byType" autowire-candidate="true" scope="singleton">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+    <bean id="glVoucherTemplateTypeDMLExecutor"  class="dml.transacs.VoucherTemplateTypeTransacsDML"
+    	abstract="false" autowire="byType" autowire-candidate="true"
+    	scope="singleton">
+    	<property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    <bean id="glVoucherTemplateMFDMLExecutor"  class="dml.transacs.VoucherTemplateMFTransacsDML"
+    	abstract="false" autowire="byType" autowire-candidate="true"
+    	scope="singleton">
+    	<property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    <bean id="loanDefDMLExecutor"  class="dml.def.LoanDefDML"
+    	abstract="false" autowire="byType" autowire-candidate="true"
+    	scope="singleton">
+    	<property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    <bean id="workFlowTransitionAdminDMLExecutor"  class="dml.admin.WorkFlowTransitionAdminDML"
+    	abstract="false" autowire="byType" autowire-candidate="true"
+    	scope="singleton">
+    	<property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    <bean id="workFlowEventTypeAdminDMLExecutor"  class="dml.admin.WorkFlowEventTypeAdminDML"
+    	abstract="false" autowire="byType" autowire-candidate="true"
+    	scope="singleton">
+    	<property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    <bean id="workFlowEventActionAdminDMLExecutor"  class="dml.admin.WorkFlowEventActionAdminDML"
+    	abstract="false" autowire="byType" autowire-candidate="true"
+    	scope="singleton">
+    	<property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    <bean id="workFlowMFAdminDML"  class="dml.admin.WorkFlowMFAdminDML"
+	    	abstract="false" autowire="byType" autowire-candidate="true"
+	    	scope="singleton">
+	</bean>
+    <bean id="ProjectPrps" class="app.beans.ProjectProps"
+    	abstract="false" autowire="byName" autowire-candidate="true"
+    	scope="singleton" name="PortalProps">
+       <property name="JDBCDriverClassName" value="${jdbc.microsoft.driverClassName}" />
+       <property name="jdbcURL" value="${jdbc.microsoft.url}" />            
+       <!-- property name="jdbcUserName" value="${jdbc.username}" /-->
+       <!-- property name="jdbcPassword" value="${jdbc.password}" /-->
+       <property name="logInfo" value="${logInfo}" />
+       <property name="logDebug" value="${logDebug}" />
+       <property name="logFileName" value="${logFileName}" />
+       <property name="logFileLocation" value="${logFileLocation}" /> 
+       <property name="logSessionTimeOut" value="${sessionTimeOut}" />
+       <property name="byteBufferSize" value="${byteBufferSize}" />
+       <property name="dfltExcelFileRecRead" value="${dfltExcelFileRecRead}" />
+       <property name="socketServerIP" value="${socketServerIP}" />
+       <property name="socketServerPort" value="${socketServerPort}" />
+       <property name="socketLogFileLocation" value="${socketLogFileLocation}" />
+	   <property name="socketLogFileName" value="${socketLogFileName}" />
+       <property name="upLoadFilePath" value="${upLoadFilePath}" />
+       <property name="smsByTableProps" value="smsByTableProps" />
+       <property name="smsByURLProps" value="smsByURLProps" />
+       <property name="isSMSEnable" value="isSMSEnable" />
+       <property name="isEmailEnable" value="isEmailEnable" />
+       <property name="mailSMTPHost" value="${mail.smtp.host}" />
+       <property name="mailSMTPAuth" value="${mail.smtp.auth}" />
+       <property name="mailSMTPUser" value="${mail.smtp.user}" />
+       <property name="mailSMTPPassword" value="${mail.smtp.password}" />
+       <property name="mailSMTPDebug" value="${mail.smtp.debug}" />            
+       <property name="mailSMTPPort" value="${mail.smtp.port}" />
+       <property name="mailSMTPstarttlsEnable" value="${mail.smtp.starttls.enable}" />
+       <property name="mailSMTPFromEmail" value="${mail.smtp.fromemail}" />
+       <property name="mailSMTPToEmail" value="${mail.smtp.toemail}" />
+       <property name="emailCC" value="${email.cc}" />
+       <property name="emailBcc" value="${email.bcc}" />
+       <property name="URL" value="${smsURL}" />
+       <property name="userName" value="${smsURLUsername}" />
+       <property name="secret" value="${smsURLSecret}" />
+       <property name="notificationFolioNumber" value="${smsThirdPartyTableDefFolioNumber}" />
+       <property name="transactionType" value="${smsThirdPartyTableDefTransactionType}" />
+       <property name="notificationRecordingDate" value="${smsThirdPartyTableDefRecordingDate}" />
+       <property name="notificationText" value="${smsThirdPartyTableDefText}" />
+       <property name="sendTo" value="${smsThirdPartyTableDefSendTo}" />
+       <property name="sendingStatus" value="${smsThirdPartyTableDefStatus}" />
+       <property name="smsTabledatabaseIsSame" value="${sms.table.database.isSame}" />
+       <property name="smsTableName" value="${sms.table.name}" />
+       <property name="smsTableKeyColumn" value="${sms.table.key_column}" />
+       <property name="cgtCalcOnSystemDate" value="${cgt.calc.on.systemDate}" />  
+       <property name="cgtCalcFirstRun" value="${cgt.calc.firstRun}" />     
+      </bean>
+      
+      <bean id="appFileHandler" name="appFileHandler"
+    	class="exceptionhandling.AppFileHandler" abstract="false"	autowire="byName" scope="singleton">
+    	<constructor-arg value="${logFileName}"></constructor-arg>
+    </bean>
+    <bean id="appLogger" name="appLogger"
+    	class="exceptionhandling.AppLogger" abstract="false"
+    	autowire="byName" scope="singleton">
+    	<constructor-arg ref="appFileHandler"></constructor-arg>
+    </bean>
+      
+    <jaxws:endpoint xmlns:tns="http://webservices/" id="fundmanagementimp"
+		implementor="webservices.FundManagementImp" wsdlLocation="wsdl/fundmanagementimp.wsdl"
+		endpointName="tns:FundManagementImpPort" serviceName="tns:FundManagementImpService"
+		address="/FundManagementImpPort">
+		<jaxws:features>
+			<bean class="org.apache.cxf.feature.LoggingFeature" />
+		</jaxws:features>
+	</jaxws:endpoint>
+	
+</beans>

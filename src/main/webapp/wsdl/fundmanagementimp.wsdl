@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="FundManagementImpService" targetNamespace="http://webservices/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://webservices/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <wsdl:types>
+    <schema xmlns="http://www.w3.org/2001/XMLSchema">
+  <import namespace="http://webservices/" schemaLocation="fundmanagementimp_schema1.xsd"/>
+</schema>
+  </wsdl:types>
+  <wsdl:message name="loadDefinitionData">
+    <wsdl:part name="parameters" element="tns:loadDefinitionData">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="executeDMLRequest">
+    <wsdl:part name="parameters" element="tns:executeDMLRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="loadDefinitionDataResponse">
+    <wsdl:part name="parameters" element="tns:loadDefinitionDataResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="Exception">
+    <wsdl:part name="Exception" element="tns:Exception">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="loadUserRoleWiseMenuesResponse">
+    <wsdl:part name="parameters" element="tns:loadUserRoleWiseMenuesResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="executeDMLRequestResponse">
+    <wsdl:part name="parameters" element="tns:executeDMLRequestResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="loadUserRoleWiseMenues">
+    <wsdl:part name="parameters" element="tns:loadUserRoleWiseMenues">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="FundManagementImp">
+    <wsdl:operation name="loadUserRoleWiseMenues">
+      <wsdl:input name="loadUserRoleWiseMenues" message="tns:loadUserRoleWiseMenues">
+    </wsdl:input>
+      <wsdl:output name="loadUserRoleWiseMenuesResponse" message="tns:loadUserRoleWiseMenuesResponse">
+    </wsdl:output>
+      <wsdl:fault name="Exception" message="tns:Exception">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="loadDefinitionData">
+      <wsdl:input name="loadDefinitionData" message="tns:loadDefinitionData">
+    </wsdl:input>
+      <wsdl:output name="loadDefinitionDataResponse" message="tns:loadDefinitionDataResponse">
+    </wsdl:output>
+      <wsdl:fault name="Exception" message="tns:Exception">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="executeDMLRequest">
+      <wsdl:input name="executeDMLRequest" message="tns:executeDMLRequest">
+    </wsdl:input>
+      <wsdl:output name="executeDMLRequestResponse" message="tns:executeDMLRequestResponse">
+    </wsdl:output>
+      <wsdl:fault name="Exception" message="tns:Exception">
+    </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="FundManagementImpServiceSoapBinding" type="tns:FundManagementImp">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="loadUserRoleWiseMenues">
+      <soap:operation soapAction="urn:LoadUserRoleWiseMenues" style="document"/>
+      <wsdl:input name="loadUserRoleWiseMenues">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="loadUserRoleWiseMenuesResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="Exception">
+        <soap:fault name="Exception" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="executeDMLRequest">
+      <soap:operation soapAction="urn:ExecuteDMLRequest" style="document"/>
+      <wsdl:input name="executeDMLRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="executeDMLRequestResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="Exception">
+        <soap:fault name="Exception" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="loadDefinitionData">
+      <soap:operation soapAction="urn:LoadDefinitionData" style="document"/>
+      <wsdl:input name="loadDefinitionData">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="loadDefinitionDataResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="Exception">
+        <soap:fault name="Exception" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="FundManagementImpService">
+    <wsdl:port name="FundManagementImpPort" binding="tns:FundManagementImpServiceSoapBinding">
+      <soap:address location="http://localhost:8889/FundManagementServer/services/FundManagementImpPort"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

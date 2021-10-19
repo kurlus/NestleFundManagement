@@ -1,0 +1,986 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	
+	<class name="app.beans.GlSlType" table="GLSLTYPE">
+		<id name="glSlType" type="string" column="gl_sl_type">
+			<generator class="assigned"></generator>
+		</id>
+		<property name="post" column="post" type="int"></property>
+		<property name="logID" column="log_id" type="long"></property>
+		<property name="glSlTypeName" column="gl_sl_type_name" type="string"></property>
+	</class>
+	<class name="app.beans.GlSlMapping" table="GLSLMAPPING">
+		<id name="glSlID" type="long" column="gl_sl_id">
+			<generator class="increment"></generator>
+		</id>
+		<property name="post" column="post" type="int"></property>
+		<property name="logID" column="log_id" type="long"></property>
+		<property name="glMfCode" column="gl_mf_code" type="string"></property>
+		<property name="glSlType" column="gl_sl_type" type="string"></property>
+		<property name="employeeID" column="employee_id" type="string"></property>
+	</class>
+	<class name="app.beans.City" table="CITY">
+		<id name="cityID" type="int" column="city_id">
+			<generator class="increment"></generator>
+		</id>
+		<property name="post" column="post" type="int"></property>
+		<property name="logID" column="log_id" type="long"></property>
+		<property name="cityName" column="city" type="string"></property>
+		<property name="cityShortName" column="city_short" type="string"></property>
+	</class>
+	<class name="app.beans.CostCentre" table="COSTCENTRE">
+		<id name="costCentreID" type="string" column="cost_centre_id">
+			<generator class="assigned"></generator>
+		</id>
+		<property name="post" column="post" type="int"></property>
+		<property name="logID" column="log_id" type="long"></property>
+		<property name="shortName" column="short_name" type="string"></property>
+		<property name="costCentreName" column="cost_centre_name"
+			type="string"></property>
+	</class>
+	<class name="app.beans.Country" table="COUNTRY">
+		<id name="countryID" type="int" column="country_id">
+			<generator class="increment"></generator>
+		</id>
+		<property name="post" column="post" type="int"></property>
+		<property name="logID" column="log_id" type="long"></property>
+		<property name="country" column="country" type="string"></property>
+		<property name="shortName" column="country_short" type="string"></property>
+	</class>
+
+	<class name="app.beans.EmployeeType" table="EMPLOYEETYPE">
+		<id name="employeeTypeId" column="employee_type_id" type="int">
+			<generator class="increment"></generator>
+		</id>
+		<property name="employeeTypeDescription" column="employee_type_description"
+			type="string"></property>
+		<property name="shortName" column="short_name" type="string"></property>
+		<property name="post" column="post" type="int"></property>
+		<property name="logID" column="log_id" type="long"></property>
+	</class>
+
+	<class name="app.beans.Template" table="TEMPLATE">
+		<id name="templateID" column="template_id" type="long">
+			<generator class="increment"></generator>
+		</id>
+		<property name="post" column="post" type="int"></property>
+		<property name="logID" column="log_id" type="long"></property>
+		<property name="templateName" column="template_name" type="string"></property>
+		<property name="shortName" column="short_name" type="string"></property>
+		<property name="fileName" column="filename" type="string"></property>
+	</class>
+	<class name="app.beans.Bank" table="BANK">
+		<id name="bankShort" column="bank_short" type="string">
+			<generator class="assigned"></generator>
+		</id>
+		<property name="post" column="post" type="int"></property>
+		<property name="logID" column="log_id" type="long"></property>
+		<property name="bankCode" column="bank_code" type="string"></property>
+		<property name="bankDescription" column="bank_description"
+			type="string"></property>
+		<property name="shortDescription" column="short_description"
+			type="string"></property>
+	</class>
+	<class name="app.beans.GlBranch" table="BRANCH">
+		<id name="branchShort" type="string" column="branch_short">
+			<generator class="assigned"></generator>
+		</id>
+		<property name="post" column="post" type="int"></property>
+		<property name="logID" column="log_id" type="long"></property>
+		<property name="branchCode" column="branch_code" type="string"></property>
+		<property name="shortDescription" column="short_description"
+			type="string"></property>
+		<property name="branchDescription" column="branch_description"
+			type="string"></property>
+	</class>
+	<class name="app.beans.GlBankBranch" table="BANKBRANCH">
+		<id name="bankBranchID" type="long" column="bankbranch_id">
+			<generator class="increment"></generator>
+		</id>
+		<property name="post" column="post" type="int"></property>
+		<property name="logID" column="log_id" type="long"></property>
+		<property name="email" column="email" type="string"></property>
+		<property name="faxOne" column="fax_one" type="string"></property>
+		<property name="faxTwo" column="fax_two" type="string"></property>
+		<property name="phoneOne" column="phone_one" type="string"></property>
+		<property name="phoneTwo" column="phone_two" type="string"></property>
+		<property name="bankShort" column="bank_short" type="string"></property>
+		<property name="cityShort" column="city_short" type="string"></property>
+		<property name="branchShort" column="branch_short" type="string"></property>
+		<property name="countryShort" column="country_short" type="string"></property>
+		<property name="bankBranchShort" column="bankbranch_short"
+			type="string"></property>
+		<property name="bankBranchAddress" column="bankbranch_address"
+			type="string"></property>
+	</class>
+	<class name="app.beans.Employee" table="EMPLOYEE">
+		<id name="employeeID" type="string" column="employee_id">
+			<generator class="assigned"></generator>
+		</id>
+		<set name="employeeContacts" cascade="save-update, delete" table="EMPLOYEECONTACTS">
+			<key column="employee_id" update="true" />
+			<one-to-many class="app.beans.EmployeeContacts" />
+		</set>
+		<property name="NIC" column="NIC" type="string"></property>
+		<property name="post" column="post" type="int"></property>
+		<property name="iban" column="IBAN" type="string"></property>
+		<property name="email" column="email" type="string"></property>
+		<property name="onBehalfOf" column="obo" type="int"></property>
+		<property name="status" column="status" type="string"></property>
+		<property name="gender" column="gender" type="string"></property>
+		<property name="reason" column="reason" type="string"></property>
+		<property name="roleID" column="role_id" type="string"></property>
+		<property name="userID" column="user_id" type="string"></property>
+		<property name="location" column="location" type="string"></property>
+		<property name="bankTitle" column="bank_title" type="string"></property>
+		<property name="accountNo" column="account_no" type="string"></property>
+		<property name="department" column="department" type="string"></property>
+		<property name="dateOfBirth" column="DOB" type="java.util.Date"></property>
+		<property name="designation" column="designation" type="string"></property>
+		<property name="dateOfJoining" column="DOJ" type="java.util.Date"></property>
+		<property name="employeeType" column="employee_type_id" type="int"></property>
+		<property name="lastWorkingDay" column="LWD" type="java.util.Date"></property>
+		<property name="employeeName" column="employee_name" type="string"></property>
+		<property name="branchCode" column="branch_code" type="string"></property>
+		<property name="bankName" column="bank_name" type="string"></property>
+		<property name="dojPF" column="DOJ_PF" type="java.util.Date"></property>
+		<property name="dojPN" column="DOJ_PN" type="java.util.Date"></property>
+		<property name="dojGR" column="DOJ_GR" type="java.util.Date"></property>
+		<property name="pnPlan" column="PN_Plan" type="string"></property>
+		<property name="selfPNRate" column="self_PN_Rate" type="string"></property>
+		<property name="companyPNRate" column="company_PN_Rate" type="string"></property>
+	</class>
+	<class name="app.beans.EmployeeContacts" table="EMPLOYEECONTACTS">
+		<id name="contactID" type="long" column="contact_id">
+			<generator class="increment"></generator>
+		</id>
+		<property name="post" column="post" type="int"></property>
+		<property name="logID" column="log_id" type="long"></property>
+		<property name="addressLine1" column="address_line1" type="string"></property>
+		<property name="addressLine2" column="address_line2" type="string"></property>
+		<property name="contact" column="contact" type="string"></property>
+		<property name="cityShort" column="city_short" type="string"></property>
+		<property name="employeeID" column="employee_id" type="string"></property>
+		<property name="addressType" column="address_type" type="string"></property>
+		<property name="countryShort" column="country_short" type="string"></property>
+	</class>
+	<class name="app.beans.ImportEmployee" table="IMPORTEMPLOYEE">
+		<id name="recordID" type="long" column="record_id">
+			<generator class="assigned"></generator>
+		</id>
+		<property name="NIC" column="NIC" type="string"></property>
+		<property name="ntn" column="NTN" type="string"></property>
+		<property name="active" column="active" type="int"></property>
+		<property name="email" column="email" type="string"></property>
+		<property name="onBehalfOf" column="obo" type="int"></property>
+		<property name="tCity" column="t_city" type="string"></property>
+		<property name="IBAN" column="IBAN" type="string"></property>
+		<property name="pCity" column="p_city" type="string"></property>
+		<property name="status" column="status" type="string"></property>
+		<property name="gender" column="gender" type="string"></property>
+		<property name="reason" column="reason" type="string"></property>
+		<property name="userID" column="user_id" type="string"></property>
+		<property name="roleID" column="role_id" type="string"></property>
+		<property name="batchID" type="long" column="batch_id"></property>
+		<property name="orgUnit" column="org_unit" type="string"></property>
+		<property name="business" column="business" type="string"></property>
+		<property name="location" column="location" type="string"></property>
+		<property name="subGroup" column="sub_group" type="string"></property>
+		<property name="tAddress" column="t_address" type="string"></property>
+		<property name="pAddress" column="p_address" type="string"></property>
+		<property name="tContact" column="t_contact" type="string"></property>
+		<property name="pContact" column="p_contact" type="string"></property>
+		<property name="tCountry" column="t_country" type="string"></property>
+		<property name="pCountry" column="p_country" type="string"></property>
+		<property name="flagImport" type="int" column="flag_import"></property>
+		<property name="bankName" column="bank_title" type="string"></property>
+		<property name="managerID" column="manager_id" type="string"></property>
+		<property name="accountNo" column="account_no" type="string"></property>
+		<property name="department" column="department" type="string"></property>
+		<property name="failReason" type="string" column="fail_reason"></property>
+		<property name="employeeID" column="employee_id" type="string"></property>
+		<property name="dateOfBirth" column="DOB" type="java.util.Date"></property>
+		<property name="nationality" column="nationality" type="string"></property>
+		<property name="designation" column="designation" type="string"></property>
+		<property name="bankShortName" column="bank_short" type="string"></property>
+		<property name="subFunction" column="sub_function" type="string"></property>
+		<property name="dateOfJoining" column="DOJ" type="java.util.Date"></property>
+		<property name="employeeName" column="employee_name" type="string"></property>
+		<property name="lastWorkingDay" column="LWD" type="java.util.Date"></property>
+		<property name="costCentreID" column="cost_centre_id" type="string"></property>
+		<property name="employeeGroup" column="employee_group" type="string"></property>
+		<property name="branchShortName" column="branch_short" type="string"></property>
+		<property name="dateOfConfirmation" column="DOC" type="java.util.Date"></property>
+		<property name="basicPay" column="basic_pay" type="java.math.BigDecimal"></property>
+		<property name="employeeFunction" column="employee_function"
+			type="string"></property>
+	</class>
+	<class name="app.beans.GlFinancialYears" table="GLFINANCIALYEARS">
+		<id name="yearId" column="financial_year_id" type="int">
+			<generator class="increment"></generator>
+		</id>
+		<property name="posted" column="post" type="int"></property>
+		<property name="logId" column="log_id" type="long"></property>
+		<property name="yearCode" column="calendar_year" type="int"></property>
+		<property name="toDate" column="to_date" type="java.util.Date"></property>
+		<property name="fromDate" column="from_date" type="java.util.Date"></property>
+		<property name="description" column="financial_year_description"
+			type="string"></property>
+	</class>
+	<class name="app.beans.GlFinancialPeriod" table="GLFINANCIALPERIOD">
+		<id name="periodId" column="period_id" type="int">
+			<generator class="increment"></generator>
+		</id>
+		<property name="posted" column="post" type="int"></property>
+		<property name="logId" column="log_id" type="long"></property>
+		<property name="isLocked" column="is_locked" type="int"></property>
+		<property name="periodType" column="period_type" type="string"></property>
+		<property name="periodShortName" column="short_name" type="string"></property>
+		<property name="financialYear" column="financial_year_id"
+			type="int"></property>
+		<property name="periodDesc" column="period_description" type="string"></property>
+		<property name="toDate" column="period_to_date" type="java.util.Date"></property>
+		<property name="fromDate" column="period_from_date" type="java.util.Date"></property>
+	</class>
+	<class name="app.beans.GlFamilyType" table="GLFAMILYTYPE">
+		<id name="glFamilyID" column="gl_family_id" type="string">
+			<generator class="increment"></generator>
+		</id>
+		<property name="post" column="post" type="int"></property>
+		<property name="logID" column="log_id" type="long"></property>
+		<property name="glFamilyShort" column="short_name" type="string"></property>
+		<property name="glFamilyDesc" column="family_description"
+			type="string"></property>
+	</class>
+	<class name="app.beans.hibernate.HLoanApply" table="LOANAPPLY">
+		<id name="applyID" type="long" column="apply_id">
+			<generator class="increment"></generator>
+		</id>
+
+		<set name="profileFiles" lazy="true" inverse="true" fetch="select" table="PROFILEFILES" cascade="save-update,delete,delete-orphan">
+			<!-- key column="compID"/ -->
+			<key column="apply_id" update="true" />
+			<one-to-many class="app.beans.hibernate.HProfileFiles" />
+		</set>
+		<property name="logID" column="log_id" type="long"></property>
+		<property name="loanID" column="loan_id" type="long"></property>
+		<property name="periodID" column="period_id" type="long"></property>
+		<property name="applyDate" column="apply_date" type="date"></property>
+		<property name="loanTypeID" column="loan_type_id" type="long"></property>
+		<property name="installmentNo" column="installment_no" type="int"></property>
+		<property name="employeeID" column="employee_id" type="string"></property>
+		<property name="transBatchID" column="trans_batch_id" type="java.lang.Long"></property>
+		<property name="uploadBatchID" column="upload_batch_id" type="long"></property>
+		<property name="uploadRecordID" column="upload_record_id" type="long"></property>
+		<property name="applyAmount" column="apply_amount" type="java.math.BigDecimal"></property>
+		<property name="interestAmount" column="interest_amount" type="java.math.BigDecimal"></property>
+		<property name="approvedAmount" column="approved_amount" type="java.math.BigDecimal"></property>
+		<property name="eligibleAmount" column="eligible_amount" type="java.math.BigDecimal"></property>
+		<property name="monthlyInstallment" column="monthly_installment" type="java.math.BigDecimal"></property>
+	</class>
+	<class name="app.beans.hibernate.HProfileFiles" table="PROFILEFILES">
+		<id name="fileID" type="long" column="files_id">
+			<generator class="increment"></generator>
+		</id>
+		<property name="fileData" column="file_data"></property>
+		<property name="post" column="post" type="int"></property>
+		<property name="logID" column="log_id" type="long"></property>
+		<property name="fileName" column="filename" type="string"></property>
+		<property name="fileType" column="file_type" type="string"></property>
+		<property name="employeeID" column="employee_id" type="string"></property>
+		<many-to-one name="loanApply" column="apply_id" class="app.beans.hibernate.HLoanApply" not-null="true" />
+	</class>
+	
+	<class name="app.beans.Payroll" table="PAYROLL">
+		<composite-id>
+			<key-property name="employeeId" type="string" column="employee_id" />
+			<key-property name="periodId" type="long" column="period_id" />
+		</composite-id>
+
+		<property name="batchId" type="long" column="batch_id"></property>
+		<property  name="recordId" type="long" column="record_id"></property>
+		<property name="post" column="post" type="int"></property>
+		<property name="logId" column="log_id" type="long"></property>
+	</class>
+	
+		<class name="app.beans.PayRollLoan" table="PAYROLLLOAN">
+		<composite-id>
+			<key-property name="employeeId" type="string" column="employee_id" />
+			<key-property name="periodId" type="long" column="period_id" />
+		</composite-id>
+		<property name="batchId" type="long" column="batch_id"></property>
+		<property  name="recordId" type="long" column="record_id"></property>
+		<property name="loanInstallment" column="loan_installment" type="java.lang.Double"></property>
+		<property name="pensionerPayment" column="pensioner_payment" type="java.lang.Double"></property>
+		<property name="interestInstallment" column="intrest_installment" type="java.lang.Double"></property>
+	</class>
+
+	<class name="app.beans.PayRollPFContribution" table="PAYROLLPFCONTRIB">
+		<composite-id>
+			<key-property name="employeeId" type="string" column="employee_id" />
+			<key-property name="periodId" type="long" column="period_id" />
+		</composite-id>
+		<property name="batchId" type="long" column="batch_id"></property>
+		<property  name="recordId" type="long" column="record_id"></property>
+		<property name="selfPfContribution" column="self_pf_contrib" type="java.lang.Double"></property>
+		<property name="companyPfContribution" column="company_pf_contrib" type="java.lang.Double"></property>	
+	</class>
+	<class name="app.beans.PayRollPNContribution" table="PAYROLLPNCONTRIB">
+		<composite-id>
+			<key-property name="employeeId" type="string" column="employee_id" />
+			<key-property name="periodId" type="long" column="period_id" />
+		</composite-id>
+		<property name="batchId" type="long" column="batch_id"></property>
+		<property  name="recordId" type="long" column="record_id"></property>
+		<property name="selfPnContribution" column="self_pn_contrib" type="java.lang.Double"></property>
+		<property name="companyPnContribution" column="company_pn_contrib" type="java.lang.Double"></property>
+		
+	</class>
+	<class name="app.beans.ImportLoanApply" table="IMPORTLOANAPPLY">
+		<composite-id>
+			<key-property name="batchID" type="long" column="batch_id" />
+			<key-property name="recordID" type="long" column="record_id" />
+		</composite-id>
+
+		<property name="flagT1" column="flag_t1" type="int"></property>
+		<property name="flagT2" column="flag_t2" type="int"></property>
+		<property name="applyID" column="apply_id" type="long"></property>
+		<property name="purpose" column="purpose" type="string"></property>
+		<property name="applyDate" column="apply_date" type="date"></property>
+		<property name="flagImport" column="flag_import" type="int"></property>
+		<property name="remarksT1" column="remarks_t1" type="string"></property>
+		<property name="remarksT2" column="remarks_t2" type="string"></property>
+		<property name="flagManager" column="flag_manager" type="int"></property>
+		<property name="loanTypeID" column="loan_type_id" type="long"></property>
+		<property name="installments" column="installments" type="int"></property>
+		<property name="employeeID" column="employee_id" type="string"></property>
+		<property name="failReason" column="fail_reason" type="string"></property>
+		<property name="remarksManager" column="remarks_manager"
+			type="string"></property>
+		<property name="applyAmount" column="apply_amount" type="java.math.BigDecimal"></property>
+		<property name="interestAmount" column="interest_amount"
+			type="java.math.BigDecimal"></property>
+		<property name="approvedAmount" column="approved_amount"
+			type="java.math.BigDecimal"></property>
+		<property name="monthlyInstallment" column="monthly_installment"
+			type="java.math.BigDecimal"></property>
+	</class>
+
+	<class name="app.beans.Roles" table="ROLES">
+		<id name="roleId" type="string" column="role_id">
+			<generator class="assigned"></generator>
+		</id>
+		<property name="post" column="post" type="int"></property>
+		<property name="logID" column="log_id" type="long"></property>
+		<property name="shortName" column="short_name" type="string"></property>
+		<property name="roleTypeID" type="string" column="role_type_id"></property>
+		<property name="roleDescription" column="role_description"
+			type="string"></property>
+	</class>
+
+	<class name="app.beans.RoleType" table="ROLETYPE">
+		<id name="roleTypeID" type="string" column="role_type_id">
+			<generator class="assigned"></generator>
+		</id>
+		<property name="post" column="post" type="int"></property>
+		<property name="logID" column="log_id" type="long"></property>
+		<property name="shortName" column="short_name" type="string"></property>
+		<property name="roleTypeDescription" column="role_type_description"
+			type="string"></property>
+	</class>
+	<class name="app.beans.LoaderInfo" table="LOADERINFO">
+		<id name="loaderID" type="long" column="loader_id">
+			<generator class="assigned"></generator>
+		</id>
+		<property name="post" column="post" type="int"></property>
+		<property name="logID" column="log_id" type="long"></property>
+		<property name="shortName" column="short_name" type="string"></property>
+		<property name="loaderTypeID" column="loader_type_id" type="string"></property>
+		<property name="loaderDescription" column="loader_description"
+			type="string"></property>
+	</class>
+	<class name="app.beans.LoaderRun" table="LOADERRUN">
+		<id name="batchID" type="long" column="batch_id">
+			<generator class="assigned"></generator>
+		</id>
+		<property name="post" column="post" type="int"></property>
+		<property name="logID" column="log_id" type="long"></property>
+		<property name="loaderID" column="loader_id" type="long"></property>
+		<property name="sessionID" column="session_id" type="string"></property>
+		<property name="employeeID" column="employee_id" type="string"></property>
+		<property name="batchDate" column="batch_date" type="java.util.Date"></property>
+	</class>
+	<class name="app.beans.TransactionLog" table="TRANSACTIONLOG">
+		<id name="logID" type="long" column="log_id">
+			<generator class="increment"></generator>
+		</id>
+		<property name="menuID" column="menu_id" type="long"></property>
+		<property name="remarks" column="remarks" type="string"></property>
+		<property name="terminalID" column="terminal_id" type="string"></property>
+		<property name="employeeID" column="employee_id" type="string"></property>
+		<property name="operationID" column="operation_id" type="string"></property>
+		<property name="serverDate" column="server_date" type="java.util.Date"></property>
+	</class>
+	<class name="app.beans.Glmf" table="GLMF">
+		<id name="glmfCode" type="string" column="gl_mf_code">
+			<generator class="assigned"></generator>
+		</id>
+		<property name="post" column="post" type="int"></property>
+		<property name="logID" column="log_id" type="long"></property>
+		<property name="glActive" column="gl_active" type="int"></property>
+		<property name="glmfLevel" column="gl_mf_level" type="int"></property>
+		<property name="detailCode" column="detail_code" type="int"></property>
+		<property name="familyID" column="gl_family_id" type="string"></property>
+		<property name="glmfParent" column="gl_mf_parent" type="string"></property>
+		<property name="glmfDesc" column="gl_mf_description" type="string"></property>
+		<property name="glGeneralDetail" column="gl_gen_detail" type="string"></property>
+	</class>
+	<class name="app.beans.GlCurrency" table="CURRENCY">
+		<id name="currencyID" type="int" column="currency_id">
+			<generator class="increment"></generator>
+		</id>
+		<property name="post" column="post" type="int"></property>
+		<property name="logID" column="log_id" type="long"></property>
+		<property name="symbol" column="currency_symbol" type="string"></property>
+		<property name="currencyCode" column="currency_code" type="string"></property>
+		<property name="description" column="currency_description"
+			type="string"></property>
+	</class>
+	<class name="app.beans.LoanType" table="LOANTYPE">
+		<id name="loanTypeId" type="long" column="loan_type_id">
+			<generator class="increment"></generator>
+		</id>
+		<property name="posted" column="post" type="int"></property>
+		<property name="salary" column="salary" type="int"></property>
+		<property name="logID" column="log_id" type="long"></property>
+		<property name="balance" column="balance" type="int"></property>
+		<property name="limits" column="limits" type="string"></property>
+		<property name="refundable" column="refundable" type="int"></property>
+		<property name="shortName" column="short_name" type="string"></property>
+		<property name="conditions" column="conditions" type="string"></property>
+		<property name="circumstances" column="circumstances" type="string"></property>
+		<property name="loanTypeName" column="loan_type_name" type="string"></property>
+		<property name="minServiceMonths" column="min_service_month"
+			type="int"></property>
+	</class>
+	<class name="app.beans.Loan" table="LOAN">
+		<id name="loanId" type="long" column="loan_id">
+			<generator class="increment"></generator>
+		</id>
+		<property name="posted" column="post" type="int"></property>
+		<property name="logID" column="log_id" type="long"></property>
+		<property name="applyId" column="apply_id" type="long"></property>
+		<property name="loanDate" column="loan_date" type="date"></property>
+		<property name="outstanding" column="outstanding" type="int"></property>
+		<property name="loanTypeId" column="loan_type_id" type="long"></property>
+		<property name="employeeId" column="employee_id" type="string"></property>
+		<property name="numOfInstallments" column="installments" type="int"></property>
+		<property name="loanAmount" column="loan_amount" type="java.math.BigDecimal"></property>
+		<property name="selfAmount" column="self_amount" type="java.math.BigDecimal"></property>
+		<property name="interestRate" column="interest_rate" type="java.math.BigDecimal"></property>
+		<property name="companyAmount" column="company_amount" type="java.math.BigDecimal"></property>
+		<property name="interestAmount" column="interest_amount" type="java.math.BigDecimal"></property>
+		<property name="monthlyInstallment" column="monthly_installment" type="java.math.BigDecimal"></property>
+	</class>
+	<class name="app.beans.LoanSchedule" table="LOANSCHEDULE">
+		<composite-id>
+			<key-property name="loanId" type="long" column="loan_id" />
+			<key-property name="periodId" type="long" column="period_id" />
+		</composite-id>
+		<property name="posted" column="post" type="int"></property>
+		<property name="logID" column="log_id" type="long"></property>
+		<property name="interestAmount" column="interest_amount"
+			type="java.math.BigDecimal"></property>
+		<property name="principalAmount" column="principal_amount"
+			type="java.math.BigDecimal"></property>
+		<property name="installmentAmount" column="installment_amount"
+			type="java.math.BigDecimal"></property>
+	</class>
+	<class name="app.beans.LoanPayment" table="LOANPAYMENT">
+		<id name="loanPaymentID" type="long" column="loan_payment_id">
+			<generator class="increment"></generator>
+		</id>
+		<property name="post" column="post" type="int"></property>
+		<property name="logID" column="log_id" type="long"></property>
+		<property name="loanID" column="loan_id" type="long"></property>
+		<property name="zakat" column="zakat" type="double"></property>
+		<property name="recordID" column="record_id" type="long"></property>
+		<property name="paymentDate" column="payment_date" type="date"></property>
+		<property name="adjustLoanID" column="adjust_loan_id" type="long"></property>
+		<property name="bankShort" column="bankbranch_short" type="string"></property>
+		<!--property name="branchShort" column="" type="string"></property -->
+		<property name="accountNumber" column="loan_account_no" type="string"></property>
+		<property name="paymentAmount" column="payment_amount" type="double"></property>
+		<property name="IBAN" column="iban" type="string"></property>
+		<property name="companyAmount" column="company_amount" type="double"></property>
+		<property name="selfAmount" column="self_amount" type="double"></property>
+	</class>
+	<class name="app.beans.ImportLoanPayment" table="IMPORTLOANPAYMENT">
+		<composite-id>
+			<key-property name="batchID" type="long" column="batch_id" />
+			<key-property name="recordID" type="long" column="record_id" />
+		</composite-id>
+		<property name="iban" column="IBAN" type="string"></property>
+		<property name="zakat" column="zakat" type="double"></property>
+		<property name="loanID" column="loan_id" type="long"></property>
+		<property name="flagImport" column="flag_import" type="int"></property>
+		<property name="bankShort" column="bank_short" type="string"></property>
+		<property name="paymentDate" column="payment_date" type="date"></property>
+		<property name="failReason" column="fail_reason" type="string"></property>
+		<property name="branchShort" column="branch_short" type="string"></property>
+		<property name="adjustLoanID" column="adjust_loan_id" type="long"></property>
+		<property name="loanPaymentID" column="loan_payment_id" type="long"></property>
+		<property name="paymentAmount" column="payment_amount" type="double"></property>
+		<property name="loanAccountNo" column="loan_account_no" type="string"></property>
+	</class>
+	<class name="app.beans.ImportPayroll" table="IMPORTPAYROLL">
+		<composite-id>
+			<key-property name="batchID" type="long" column="batch_id" />
+			<key-property name="recordID" type="long" column="record_id" />
+		</composite-id>
+		<property name="flagImport" column="flag_import" type="int"></property>
+		<property name="employeeID" column="employee_id" type="string"></property>
+		<property name="failReason" column="fail_reason" type="string"></property>
+		<property name="payRollDate" column="payroll_date" type="java.util.Date"></property>
+		<property name="loanInstallment" column="loan_installment"
+			type="java.lang.Double"></property>
+		<property name="selfPensionContrib" column="self_pn_contrib"
+			type="java.lang.Double"></property>
+		<property name="pensionerPayment" column="pensioner_payment"
+			type="java.lang.Double"></property>
+		<property name="interestInstallment" column="intrest_installment"
+			type="java.lang.Double"></property>
+		<property name="companyPensionContrib" column="company_pn_contrib"
+			type="java.lang.Double"></property>
+		<property name="selfProvidentFundContrib" column="self_pf_contrib"
+			type="java.lang.Double"></property>
+		<property name="companyProvidentFundContrib" column="company_pf_contrib"
+			type="java.lang.Double"></property>
+	</class>
+
+	<class name="app.beans.GlSlCode" table="GLSLCODES">
+		<composite-id>
+			<key-property name="slCode" type="string" column="sl_code" />
+			<key-property name="slType" type="long" column="gl_sl_type" />
+		</composite-id>
+		<property name="post" column="post" type="int"></property>
+		<property name="logID" column="log_id" type="long"></property>
+		<property name="active" column="is_active" type="int"></property>
+		<property name="slShortName" column="short_name" type="string"></property>
+		<property name="slDescription" column="sl_description" type="string"></property>
+	</class>	
+	<class name="app.beans.LoanInterestRate" table="LOANINTERESTRATE">
+		<id name="interestRateID" type="long" column="interest_rate_id">
+			<generator class="increment"></generator>
+		</id>
+		<property name="toDate" column="to_date" type="java.util.Date"></property>
+		<property name="fromDate" column="from_date" type="java.util.Date"></property>
+		<property name="interestRate" column="interest_rate" type="java.lang.Double"></property>
+		<property name="post" column="post" type="int"></property>
+		<property name="logID" column="log_id" type="long"></property>
+	</class>
+<class name="app.beans.hibernate.HJournalGlVoucher" table="GLVOUCHER">
+		<id name="glVoucherNo" type="long" column="gl_voucher_no">
+			<generator class="increment"></generator>
+		</id>
+		<set name="glJournalDet" lazy="true" inverse="true" fetch="select"
+			table="GLJOURNALDET" cascade="save-update,delete,delete-orphan">
+			<key column="gl_voucher_no" not-null="true" />
+			<one-to-many class="app.beans.hibernate.HJournalDet" />
+		</set>
+		<property name="year" column="gl_year" type="int"></property>
+		<property name="month" column="gl_month" type="int"></property>
+		<property name="financialID" column="financial_id" type="int"></property>
+		<property name="post" column="post" type="int"></property>
+		<property name="logID" column="log_id" type="long"></property>
+		<property name="glFormNo" column="gl_form_no" type="int"></property>
+		<property name="periodID" column="period_id" type="long"></property>
+		<property name="fundShort" column="fund_short" type="string"></property>
+		<property name="narration" column="narration" type="string"></property>
+		<property name="bookTypeShort" column="gl_book_type" type="string"></property>
+		<property name="formType" column="gl_form_type" type="string"></property>
+		<property name="flagTreasury" column="flag_treasury" type="int"></property>
+		<property name="remarksTreasury" column="remarks_treasury"
+			type="string"></property>
+		<property name="glVoucherDate" column="gl_voucher_date" type="java.util.Date"></property>
+	</class>
+	<class name="app.beans.hibernate.HJournalDet" table="GLJOURNALDET">
+		<id name="glLineNo" type="int" column="gl_line_no">
+			<generator class="increment"></generator>
+		</id>
+		<property name="glMFCode" column="gl_mf_code" type="string"></property>
+		<property name="glSLType" column="gl_sl_type" type="string"></property>
+		<property name="narration" column="narration" type="string"></property>
+		<property name="chequeNo" column="cheque_no" type="string"></property>
+		<property name="employeeID" column="employee_id" type="string"></property>
+		<property name="debitAmount" column="debit_amount" type="java.math.BigDecimal"></property>
+		<property name="creditAmount" column="credit_amount" type="java.math.BigDecimal"></property>
+		<many-to-one name="glVoucher" column="gl_voucher_no"
+			class="app.beans.hibernate.HJournalGlVoucher" not-null="true" />
+	</class>
+	
+	
+	<class name="app.beans.hibernate.HBankPaymentGlVoucher" table="GLVOUCHER">
+		<id name="glVoucherNo" type="long" column="gl_voucher_no">
+			<generator class="increment"></generator>
+		</id>
+		<set name="glBankPaymentDet" lazy="true" inverse="true" fetch="select"
+			table="GLBANKPAYMENTDET" cascade="save-update,delete,delete-orphan">
+			<key column="gl_voucher_no" not-null="true" />
+			<one-to-many class="app.beans.hibernate.HBankPaymentDet" />
+		</set>
+		<property name="year" column="gl_year" type="int"></property>
+		<property name="month" column="gl_month" type="int"></property>
+		<property name="financialID" column="financial_id" type="int"></property>
+		<property name="post" column="post" type="int"></property>
+		<property name="logID" column="log_id" type="long"></property>
+		<property name="glFormNo" column="gl_form_no" type="int"></property>
+		<property name="periodID" column="period_id" type="long"></property>
+		<property name="fundShort" column="fund_short" type="string"></property>
+		<property name="narration" column="narration" type="string"></property>
+		<property name="bookTypeShort" column="gl_book_type" type="string"></property>
+		<property name="formType" column="gl_form_type" type="string"></property>
+		<property name="flagTreasury" column="flag_treasury" type="int"></property>
+		<property name="remarksTreasury" column="remarks_treasury"
+			type="string"></property>
+		<property name="glVoucherDate" column="gl_voucher_date" type="java.util.Date"></property>
+	</class>
+	<class name="app.beans.hibernate.HBankPaymentDet" table="GLBANKPAYMENTDET">
+		<id name="glLineNo" type="int" column="gl_line_no">
+			<generator class="increment"></generator>
+		</id>
+		<property name="glMFCode" column="gl_mf_code" type="string"></property>
+		<property name="glSLType" column="gl_sl_type" type="string"></property>
+		<property name="narration" column="narration" type="string"></property>
+		<property name="chequeNo" column="cheque_no" type="string"></property>
+		<property name="employeeID" column="employee_id" type="string"></property>
+		<property name="debitAmount" column="debit_amount" type="java.math.BigDecimal"></property>
+		<property name="creditAmount" column="credit_amount" type="java.math.BigDecimal"></property>
+		<many-to-one name="glVoucher" column="gl_voucher_no"
+			class="app.beans.hibernate.HBankPaymentGlVoucher" not-null="true" />
+	</class>
+	<class name="app.beans.hibernate.HBankReceiptGlVoucher" table="GLVOUCHER">
+		<id name="glVoucherNo" type="long" column="gl_voucher_no">
+			<generator class="increment"></generator>
+		</id>
+		<set name="glBankReceiptDet" lazy="true" inverse="true" fetch="select"
+			table="GLBANKRECEIPTDET" cascade="save-update,delete,delete-orphan">
+			<key column="gl_voucher_no" not-null="true" />
+			<one-to-many class="app.beans.hibernate.HBankReceiptDet" />
+		</set>
+		
+		<property name="year" column="gl_year" type="int"></property>
+		<property name="month" column="gl_month" type="int"></property>
+		<property name="financialID" column="financial_id" type="int"></property>
+		<property name="post" column="post" type="int"></property>
+		<property name="logID" column="log_id" type="long"></property>
+		<property name="glFormNo" column="gl_form_no" type="int"></property>
+		<property name="periodID" column="period_id" type="long"></property>
+		<property name="fundShort" column="fund_short" type="string"></property>
+		<property name="narration" column="narration" type="string"></property>
+		<property name="bookTypeShort" column="gl_book_type" type="string"></property>
+		<property name="formType" column="gl_form_type" type="string"></property>
+		<property name="flagTreasury" column="flag_treasury" type="int"></property>
+		<property name="remarksTreasury" column="remarks_treasury"
+			type="string"></property>
+		<property name="glVoucherDate" column="gl_voucher_date" type="java.util.Date"></property>
+	</class>
+	<class name="app.beans.hibernate.HBankReceiptDet" table="GLBANKRECEIPTDET">
+		<id name="glLineNo" type="int" column="gl_line_no">
+			<generator class="increment"></generator>
+		</id>
+		<property name="glMFCode" column="gl_mf_code" type="string"></property>
+		<property name="glSLType" column="gl_sl_type" type="string"></property>
+		<property name="narration" column="narration" type="string"></property>
+		<property name="chequeNo" column="cheque_no" type="string"></property>
+		<property name="employeeID" column="employee_id" type="string"></property>
+		<property name="debitAmount" column="debit_amount" type="java.math.BigDecimal"></property>
+		<property name="creditAmount" column="credit_amount" type="java.math.BigDecimal"></property>
+		<many-to-one name="glVoucher" column="gl_voucher_no"
+			class="app.beans.hibernate.HBankReceiptGlVoucher" not-null="true" />
+	</class>
+	<class name="app.beans.hibernate.HCashPaymentGlVoucher" table="GLVOUCHER">
+		<id name="glVoucherNo" type="long" column="gl_voucher_no">
+			<generator class="increment"></generator>
+		</id>
+		<set name="cashPaymentDet" lazy="true" inverse="true" fetch="select"
+			table="GLCASHPAYMENTDET" cascade="save-update,delete,delete-orphan">
+			<key column="gl_voucher_no" not-null="true" />
+			<one-to-many class="app.beans.hibernate.HCashPaymentDet" />
+		</set>
+		<property name="year" column="gl_year" type="int"></property>
+		<property name="month" column="gl_month" type="int"></property>
+		<property name="financialID" column="financial_id" type="int"></property>
+		<property name="post" column="post" type="int"></property>
+		<property name="logID" column="log_id" type="long"></property>
+		<property name="glFormNo" column="gl_form_no" type="int"></property>
+		<property name="periodID" column="period_id" type="long"></property>
+		<property name="fundShort" column="fund_short" type="string"></property>
+		<property name="narration" column="narration" type="string"></property>
+		<property name="bookTypeShort" column="gl_book_type" type="string"></property>
+		<property name="formType" column="gl_form_type" type="string"></property>
+		<property name="flagTreasury" column="flag_treasury" type="int"></property>
+		<property name="remarksTreasury" column="remarks_treasury"
+			type="string"></property>
+		<property name="glVoucherDate" column="gl_voucher_date" type="java.util.Date"></property>
+	</class>
+	<class name="app.beans.hibernate.HCashPaymentDet" table="GLCASHPAYMENTDET">
+		<id name="glLineNo" type="int" column="gl_line_no">
+			<generator class="increment"></generator>
+		</id>
+		<property name="glMfCode" column="gl_mf_code" type="string"></property>
+		<property name="glSlType" column="gl_sl_type" type="string"></property>
+		<property name="narration" column="narration" type="string"></property>
+		<property name="employeeID" column="employee_id" type="string"></property>
+		<property name="debitAmount" column="debit_amount" type="java.math.BigDecimal"></property>
+		<property name="creditAmount" column="credit_amount" type="java.math.BigDecimal"></property>
+		<many-to-one name="glVoucher" column="gl_voucher_no"
+			class="app.beans.hibernate.HCashPaymentGlVoucher" not-null="true" />
+	</class>
+	<class name="app.beans.hibernate.HCashReceiptGlVoucher" table="GLVOUCHER">
+		<id name="glVoucherNo" type="long" column="gl_voucher_no">
+			<generator class="increment"></generator>
+		</id>
+		<set name="cashReceiptDet" lazy="true" inverse="true" fetch="select"
+			table="GLCASHRECEIPTDET" cascade="save-update,delete,delete-orphan">
+			<key column="gl_voucher_no" not-null="true" />
+			<one-to-many class="app.beans.hibernate.HCashReceiptDet" />
+		</set>
+		
+		<property name="year" column="gl_year" type="int"></property>
+		<property name="month" column="gl_month" type="int"></property>
+		<property name="financialID" column="financial_id" type="int"></property>
+		<property name="post" column="post" type="int"></property>
+		<property name="logID" column="log_id" type="long"></property>
+		<property name="glFormNo" column="gl_form_no" type="int"></property>
+		<property name="periodID" column="period_id" type="long"></property>
+		<property name="fundShort" column="fund_short" type="string"></property>
+		<property name="narration" column="narration" type="string"></property>
+		<property name="bookTypeShort" column="gl_book_type" type="string"></property>
+		<property name="formType" column="gl_form_type" type="string"></property>
+		<property name="flagTreasury" column="flag_treasury" type="int"></property>
+		<property name="remarksTreasury" column="remarks_treasury"
+			type="string"></property>
+		<property name="glVoucherDate" column="gl_voucher_date" type="java.util.Date"></property>
+	</class>
+	<class name="app.beans.hibernate.HCashReceiptDet" table="GLCASHRECEIPTDET">
+		<id name="glLineNo" type="int" column="gl_line_no">
+			<generator class="increment"></generator>
+		</id>
+		<property name="glMfCode" column="gl_mf_code" type="string"></property>
+		<property name="glSlType" column="gl_sl_type" type="string"></property>
+		<property name="narration" column="narration" type="string"></property>
+		<property name="employeeID" column="employee_id" type="string"></property>
+		<property name="debitAmount" column="debit_amount" type="java.math.BigDecimal"></property>
+		<property name="creditAmount" column="credit_amount" type="java.math.BigDecimal"></property>
+		<many-to-one name="cashReceiptGlVoucher" column="gl_voucher_no"
+			class="app.beans.hibernate.HCashReceiptGlVoucher" not-null="true" />
+	</class>
+
+	<class name="app.beans.LoanSettlement" table="LOANSETTLEMENT">
+		<id name="settlementID" type="long" column="settlement_id">
+			<generator class="increment"></generator>
+		</id>
+		<set name="loanSettlementFiles" cascade="save-update, delete"
+			table="LOANSETTLEMENTFILES">
+			<!-- key column="compID"/ -->
+			<key column="settlement_id" update="true" />
+			<one-to-many class="app.beans.LoanSettlementFiles" />
+		</set>
+		<property name="settlementDate" column="settlement_date"
+			type="java.util.Date"></property>
+		<property name="settlementTypeID" column="settlement_type_id"></property>
+		<property name="employeeID" column="employee_id" type="string"></property>
+		<property name="principalAmount" column="principal_amount"
+			type="java.math.BigDecimal"></property>
+		<property name="interestAmount" column="interest_amount"
+			type="java.math.BigDecimal"></property>
+		<property name="post" column="post" type="int"></property>
+		<property name="logID" column="log_id" type="long"></property>
+		<property name="loanID" column="loan_id" type="long"></property>
+	</class>
+
+
+	<class name="app.beans.LoanSettlementFiles" table="LOANSETTLEMENTFILES">
+		<id name="fileID" type="long" column="files_id">
+			<generator class="increment"></generator>
+		</id>
+		<property name="fileData" column="file_data"></property>
+		<property name="post" column="post" type="int"></property>
+		<property name="logID" column="log_id" type="long"></property>
+		<property name="settlementID" column="settlement_id" type="long"></property>
+		<property name="fileName" column="filename" type="string"></property>
+		<property name="fileType" column="file_type" type="string"></property>
+		<property name="employeeID" column="employee_id" type="string"></property>
+	</class>
+	<class name="app.beans.Fund" table="FUND">
+		<id name="fundCode" type="string" column="fund_code">
+			<generator class="assigned"></generator>
+		</id>
+		<property name="fundName" column="fund_name" type="string"></property>
+		<property name="shortName" column="short_name" type="string"></property>
+		<property name="categoryId" column="category_Id" type="int"></property>
+		<property name="post" column="post" type="int"></property>
+		<property name="logID" column="log_id" type="long"></property>
+	</class>
+	<class name="app.beans.hibernate.HLoanDef" table="LOANDEF">
+		<id name="loanTypeId" type="long" column="loan_type_id">
+			<generator class="increment"></generator>
+		</id>
+		<set name="loanAgeDef" lazy="true" inverse="true" fetch="select" table="LOANAGEDEF" cascade="save-update,delete,delete-orphan">
+			<key column="loan_type_id" not-null="true" />
+			<one-to-many class="app.beans.hibernate.HLoanAgeDef" />
+		</set>
+		<property name="logID" column="log_id" type="long"></property>
+		<property name="salaryMonths" column="salary_months" type="int"></property>
+		<property name="fundBalance" column="fund_balance" type="int"></property>
+		<property name="loanTypeName" column="loan_type_name" type="string"></property>
+		<property name="description" column="description" type="string"></property>
+		<property name="refundable" column="isrefundable" type="int"></property>
+		<property name="conditions" column="conditions" type="string"></property>
+		<property name="ageDependent" column="isage_dependand" type="int"></property>
+		<property name="loanDefDate" column="loan_def_date" type="java.util.Date"></property>
+	</class>
+	<class name="app.beans.hibernate.HLoanAgeDef" table="LOANAGEDEF">
+		<id name="sequenceID" type="long" column="sequence_id">
+			<generator class="increment"></generator>
+		</id>
+		<property name="age" column="age" type="int"></property>
+		<property name="logicalOperator" column="logical_operator" type="string"></property>
+		<property name="fundPercentage" column="fund_percentage" type="int"></property>
+		<many-to-one name="loanDef" column="loan_type_id" class="app.beans.hibernate.HLoanDef" not-null="true" />
+	</class>
+	<class name="app.beans.GlVoucherTemplateType" table="GLVOUCHERTEMPLATETYPE">
+		<id name="typeShort" type="string" column="type_short">
+			<generator class="assigned"></generator>
+		</id>
+		
+		<property name="logID" column="log_id" type="long"></property>
+		<property name="description" column="description" type="string"></property>
+	</class>
+	<class name="app.beans.hibernate.HGlVoucherTemplateMf" table="GLVOUCHERTEMPLATEMF">
+		<id name="templateID" type="int" column="template_id">
+			<generator class="increment"></generator>
+		</id>
+		<set name="glVoucherTemplateDet" lazy="true" inverse="true" fetch="select" table="GLVOUCHERTEMPLATEDET" cascade="save-update,delete,delete-orphan">
+			<key column="template_id" not-null="true" />
+			<one-to-many class="app.beans.hibernate.HGlVoucherTemplateDet" />
+		</set>
+		<property name="post" column="post" type="int"></property>
+		<property name="logID" column="log_id" type="long"></property>
+		<property name="typeShort" column="type_short" type="string"></property>
+		<property name="description" column="description" type="string"></property>
+		<property name="templateName" column="template_name" type="string"></property>
+		<property name="bookTypeShort" column="gl_book_type" type="string"></property>
+	</class>
+	<class name="app.beans.hibernate.HGlVoucherTemplateDet" table="GLVOUCHERTEMPLATEDET">
+		<id name="glLineNo" type="int" column="gl_line_no">
+			<generator class="increment"></generator>
+		</id>
+		<property name="drCr" column="dr_cr" type="string"></property>
+		<property name="glMfCode" column="gl_mf_code" type="string"></property>
+		<property name="glSlType" column="gl_sl_type" type="string"></property>
+		<property name="employeeID" column="employee_id" type="string"></property>
+		<property name="amount" column="amount" type="java.math.BigDecimal"></property>
+		<property name="narration" column="narration" type="string"></property>
+		<many-to-one name="glVoucherTemplateMf" column="template_id" class="app.beans.hibernate.HGlVoucherTemplateMf" not-null="true" />
+	</class>
+	<class name="app.beans.WfTransition" table="WORKFLOWTRANSITION">
+		<id name="transitionCode" type="string" column="transition_code">
+			<generator class="assigned"></generator>
+		</id>
+		<property name="logID" column="log_id" type="long"></property>
+		<property name="transitionName" column="transition_name"	type="string"></property>
+	</class>
+	<class name="app.beans.WfEventType" table="WORKFLOWEVENTTYPE">
+		<id name="eventType" type="string" column="event_type">
+			<generator class="assigned"></generator>
+		</id>
+		<property name="logID" column="log_id" type="long"></property>
+		<property name="eventTypeName" column="description"	type="string"></property>
+	</class>
+	<class name="app.beans.WfEventAction" table="WORKFLOWEVENTACTION">
+		<id name="actionID" type="int" column="action_id">
+			<generator class="increment"></generator>
+		</id>
+		<property name="logID" column="log_id" type="long"></property>
+		<property name="actionName" column="action_name"	type="string"></property>
+		<property name="actionDescription" column="description"	type="string"></property>
+	</class>
+	<class name="app.beans.hibernate.HWfMF" table="WORKFLOWMF">
+		<id name="workFlowId" type="long" column="workflow_id">
+			<generator class="increment"></generator>
+		</id>
+		<set name="hWfDetail" lazy="true" inverse="true" fetch="select" table="WORKFLOWDET" >
+			<key column="workflow_id" not-null="true" />
+			<one-to-many class="app.beans.hibernate.HWfDetail" />
+		</set>
+		<property name="logID" column="log_id" type="long"></property>
+		<property name="actionID" column="action_id" type="int"></property>
+		<property name="eventTypeId" column="event_type" type="string"></property>
+		<property name="workFlowName" column="workflow_name" type="string"></property>
+		
+	</class>
+	<class name="app.beans.hibernate.HWfDetail" table="WORKFLOWDET">
+		<id name="wfDetailID" type="long" column="workflow_det_id">
+			<generator class="increment"></generator>
+		</id>
+		<property name="fromTransition" column="from_transition" type="string"></property>
+		<property name="toTransition" column="to_transition" type="string"></property>
+		<property name="workFlowSeq" column="workflow_seq" type="int"></property>
+		<property name="isMemberEmail" column="member_email" type="int"></property>
+		<many-to-one name="workFlowMF" column="workflow_id" class="app.beans.hibernate.HWfMF" not-null="true" />
+	</class>
+	<class name="app.beans.GlBookType" table="GLBOOKTYPE">
+		<id name="bookType" column="gl_book_type" type="string">
+			<generator class="assigned"></generator>
+		</id>
+		<property name="post" column="post" type="int"></property>
+		<property name="logID" column="log_id" type="long"></property>
+		<property name="formType" column="gl_form_type" type="string"></property>
+		<property name="glMFCode" column="gl_mf_code" type="string"></property>
+		<property name="fundShort" column="fund_short" type="string"></property>
+		<property name="description" column="description" type="string"></property>
+	</class>
+	<class name="app.beans.GlFormType" table="GLFormTYPE">
+		<id name="FormType" column="gl_Form_type" type="string">
+			<generator class="assigned"></generator>
+		</id>
+		<property name="post" column="post" type="int"></property>
+		<property name="logID" column="log_id" type="long"></property>
+		<property name="voucherInitialize" column="vch_initialize" type="string"></property>
+		<property name="description" column="description" type="string"></property>
+	</class>
+	<class name="app.beans.LoanDefHistory" table="LOANDEFHISTORY">
+		<id name="historyID" type="long" column="history_id">
+			<generator class="increment"></generator>
+		</id>
+		<set name="loanAgeDefHistory" lazy="true" inverse="true" fetch="select" table="LOANAGEDEFHISTORY" cascade="save-update,delete,delete-orphan">
+			<key column="loan_type_id" not-null="true" />
+			<one-to-many class="app.beans.LoanAgeDefHistory" />
+		</set>
+		<property name="loanTypeId" column="loan_type_id" type="long"></property>
+		<property name="logID" column="log_id" type="long"></property>
+		<property name="salaryMonths" column="salary_months" type="int"></property>
+		<property name="fundBalance" column="fund_balance" type="int"></property>
+		<property name="loanTypeName" column="loan_type_name" type="string"></property>
+		<property name="description" column="description" type="string"></property>
+		<property name="refundable" column="isrefundable" type="int"></property>
+		<property name="conditions" column="conditions" type="string"></property>
+		<property name="ageDependent" column="isage_dependand" type="int"></property>
+		<property name="loanDefDate" column="loan_def_date" type="java.util.Date"></property>
+	</class>
+	<class name="app.beans.LoanAgeDefHistory" table="LOANAGEDEFHISTORY">
+		<id name="historyID" type="long" column="history_id">
+			<generator class="increment"></generator>
+		</id>
+		<property name="sequence" column="sequence_id" type="long"></property>
+		<property name="age" column="age" type="int"></property>
+		<property name="logicalOperator" column="logical_operator" type="string"></property>
+		<property name="fundPercentage" column="fund_percentage" type="int"></property>
+		<many-to-one name="loanDefHistory" column="loan_type_id" class="app.beans.LoanDefHistory" not-null="true" />
+	</class>
+	
+</hibernate-mapping>

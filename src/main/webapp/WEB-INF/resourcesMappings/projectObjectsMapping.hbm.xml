@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+<class name="definition.beans.BankBean" table="GL_BANK">
+   <id name="bankID" type="int" column="bank_id">
+   <generator class="assigned"></generator>
+   </id>
+   <property name="bankDescription" column="bank_description" type="string"></property>
+   <property name="shortName" column="short_name" type="string"></property>
+   <property name="bankAddress" column="bank_address" type="string"></property>
+   <property name="post" column="post" type="int"></property>
+   <property name="logID" column="log_id" type="long"></property>   
+  </class>
+  
+  <class name="definition.beans.BankBranchBean" table="GL_BANK">
+   <id name="branchId" type="int" column="branch_id">
+   <generator class="assigned"></generator>
+   </id>
+   <property name="branchDescription" column="branch_description" type="string"></property>
+   <property name="branchShortName" column="short_name" type="string"></property>
+   <property name="bankShortName" column="bank_short" type="string"></property>
+   <property name="branchAddress" column="branch_address" type="string"></property>
+   <property name="faxOne" column="fax_one" type="string"></property>
+   <property name="faxTwo" column="fax_two" type="string"></property>
+   <property name="phoneOne" column="phone_one" type="string"></property>
+   <property name="phoneTwo" column="phone_two" type="string"></property>
+   <property name="email" column="email" type="string"></property>
+   <property name="post" column="post" type="int"></property>
+   <property name="logID" column="log_id" type="long"></property>   
+  </class>
+  
+  <class name="definition.beans.CostCenterBean" table="COST_CENTRE">
+   <id name="costCentreID" type="string" column="cost_centre_id">
+   <generator class="assigned"></generator>
+   </id>
+   <property name="costCentreName" column="cost_centre_name" type="string"></property>
+   <property name="shortName" column="short_name" type="string"></property>
+   <property name="post" column="post" type="int"></property>
+   <property name="logID" column="log_id" type="long"></property>   
+  </class>
+  
+  <class name="definition.beans.CountryBean" table="COUNTRY">
+   <id name="countryId" type="int" column="country_id">
+   <generator class="assigned"></generator>
+   </id>
+   <property name="country" column="country" type="string"></property>
+   <property name="shortName" column="short_name" type="string"></property>
+   <property name="post" column="post" type="int"></property>
+   <property name="logID" column="log_id" type="long"></property>   
+  </class>
+  
+  <class name="definition.beans.CurrencyBean" table="GL_CURRENCY">
+   <id name="currencyID" type="int" column="currency_id">
+   <generator class="assigned"></generator>
+   </id>
+   <property name="currencyCode" column="currency_code" type="string"></property>
+   <property name="description" column="currency_description" type="string"></property>
+   <property name="symbol" column="currency_symbol" type="string"></property>
+   <property name="post" column="post" type="int"></property>
+   <property name="logID" column="log_id" type="long"></property>   
+  </class>  
+  
+  <class name="definition.beans.CityBean" table="CITY">
+   <id name="cityId" type="int" column="city_id">
+   <generator class="assigned"></generator>
+   </id>
+   <property name="cityName" column="city" type="string"></property>
+   <property name="cityShortName" column="short_name" type="string"></property>
+   <property name="post" column="post" type="int"></property>
+   <property name="logId" column="log_id" type="long"></property>   
+  </class>
+  
+  <class name="definition.beans.EmployeeBean" table="EMPLOYEE">
+   <id name="employeeID" type="int" column="employee_id">
+   <generator class="assigned"></generator>
+   </id>
+   <property name="firstName" column="first_name" type="string"></property>
+   <property name="lastName" column="last_name" type="string"></property>
+   <property name="nic" column="NIC" type="string"></property>
+   <property name="ntn" column="NTN" type="string"></property>  
+   <property name="dob" column="DOB" type="date"></property>
+   <property name="doj" column="DOJ" type="date"></property>
+   <property name="doc" column="DOC" type="date"></property>
+   <property name="lwd" column="LWD" type="date"></property>
+   <property name="gender" column="gender" type="string"></property>
+   <property name="active" column="active" type="int"></property>
+   <property name="locationID" column="location_id" type="int"></property>
+   <property name="costCentreID" column="cost_centre_id" type="string"></property> 
+   <property name="orgUnitID" column="org_unit_id" type="int"></property>
+   <property name="managerID" column="manager_id" type="string"></property>
+   <property name="userID" column="user_id" type="string"></property> 
+   <property name="business" column="business" type="string"></property>
+   <property name="employeeGroup" column="employee_group" type="string"></property> 
+   <property name="subGroup" column="sub_group" type="string"></property>
+   <property name="employeeFunction" column="employee_function" type="string"></property> 
+   <property name="subFunction" column="sub_function" type="string"></property>
+   <property name="designation" column="designation" type="string"></property>
+   <property name="email" column="email" type="string"></property>
+   <property name="nationality" column="nationality" type="string"></property> 
+   <property name="post" column="post" type="int"></property>
+   <property name="logID" column="log_id" type="long"></property>
+   <property name="roleID" column="role_id" type="string"></property>  
+  </class>
+  
+  <class name="definition.beans.EmployeeContractsBean" table="EMPLOYEE_CONTRACTS">
+   <id name="contractID" type="long" column="contract_id">
+   <generator class="assigned"></generator>
+   </id>
+   <property name="employeeID" column="employee_id" type="string"></property>
+   <property name="primaryAddress" column="primary_address" type="string"></property>
+   <property name="secondaryAddress" column="secondary_address" type="string"></property>
+   <property name="primaryContact" column="primary_contact" type="int"></property>
+   <property name="secondaryContact" column="secondary_contact" type="int"></property>
+   <property name="cityID" column="city_id" type="int"></property>
+   <property name="countryID" column="country_id" type="int"></property>
+   <property name="post" column="post" type="int"></property>
+   <property name="logID" column="log_id" type="long"></property>   
+  </class>
+  
+  <class name="definition.beans.MemberTypeBean" table="EMPLOYEE_TYPE">
+   <id name="" type="int" column="employee_type_id">
+   <generator class="assigned"></generator>
+   </id>
+   <property name="employeeID" column="employee_type_description" type="string"></property>
+   <property name="primaryAddress" column="short_name" type="string"></property>
+   <property name="post" column="post" type="int"></property>
+   <property name="logID" column="log_id" type="long"></property>   
+  </class>
+  
+  <class name="definition.beans.RoleBean" table="ROLES">
+   <id name="roleId" type="int" column="role_id">
+   <generator class="assigned"></generator>
+   </id>
+   <property name="roleDescription" column="role_description" type="string"></property>
+   <property name="shortName" column="short_name" type="string"></property>
+   <property name="post" column="post" type="int"></property>
+   <property name="logID" column="log_id" type="long"></property>   
+  </class>
+  
+  <class name="definition.beans.FundBean" table="FUND">
+   <id name="fundCode" type="int" column="fund_code">
+   <generator class="assigned"></generator>
+   </id>
+   <property name="fundName" column="fund_name" type="string"></property>
+   <property name="shortName" column="short_name" type="string"></property>
+   <property name="categoryId" column="category_id" type="int"></property>
+   <property name="post" column="post" type="int"></property>
+   <property name="logID" column="log_id" type="long"></property>   
+  </class>
+  <class name="definition.beans.FundBean" table="FUND">
+   <id name="fundCode" type="int" column="fund_code">
+   <generator class="assigned"></generator>
+   </id>
+   <property name="fundName" column="fund_name" type="string"></property>
+   <property name="shortName" column="short_name" type="string"></property>
+   <property name="categoryId" column="category_id" type="int"></property>
+   <property name="post" column="post" type="int"></property>
+   <property name="logID" column="log_id" type="long"></property>   
+  </class>
+  
+  <class name="definition.beans.FundCategoryBean" table="FUND_CATEGORY">
+   <id name="fundCategoryID" type="int" column="category_id">
+   <generator class="assigned"></generator>
+   </id>
+   <property name="description" column="category_description" type="string"></property>
+   <property name="shortName" column="short_name" type="string"></property>
+   <property name="post" column="post" type="int"></property>
+   <property name="logID" column="log_id" type="long"></property>   
+  </class>
+  
+  <class name="definition.beans.FundBankAccountBean" table="FUND_BANK_ACCOUNT">
+   <id name="fundBankAccountID" type="long" column="fund_bank_acc_id">
+   <generator class="assigned"></generator>
+   </id>
+   <property name="fundShortName" column="fund_short" type="string"></property>
+   <property name="bankShortName" column="bank_short" type="string"></property>
+   <property name="branchShort" column="branch_short" type="string"></property>
+   <property name="glMFCode" column="account_no" type="string"></property>
+   <property name="accountNo" column="gl_mf_code" type="string"></property>
+   <property name="defaultAccount" column="default_acc" type="int"></property>
+   <property name="post" column="post" type="int"></property>
+   <property name="logID" column="log_id" type="long"></property>   
+  </class>
+  
+</hibernate-mapping>
+
